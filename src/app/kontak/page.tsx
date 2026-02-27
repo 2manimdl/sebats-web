@@ -1,24 +1,19 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { ArrowRight, Phone, MapPin, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ClientMarquee from "@/components/ClientMarquee";
+import gsap from "gsap";
+import SplitType from "split-type";
 
 const contacts = [
     {
-<<<<<<< Updated upstream
         label: "Business",
         description: "Bicarakan visi kolaborasi atau inisiasi project baru bersama kami.",
         cta: "WhatsApp Us",
         href: "https://wa.me/6281234567890?text=Halo%20sebats,%20saya%20ingin%20diskusi%20project",
-=======
-        label: "Business Inquiries",
-        description: "Mau kolaborasi atau mulai project? Langsung chat aja.",
-        cta: "Chat via WhatsApp",
-        href: "https://wa.me/6281234567890?text=Halo%20sebat's%20saya%20ingin%20diskusi%20project",
-        icon: MessageCircle,
->>>>>>> Stashed changes
     },
     {
         label: "Careers",
@@ -35,6 +30,106 @@ const contacts = [
 ];
 
 export default function KontakPage() {
+    const heroTextRef = useRef<HTMLHeadingElement>(null);
+    const labelRef = useRef<HTMLParagraphElement>(null);
+    const descRef = useRef<HTMLParagraphElement>(null);
+    const mapRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!heroTextRef.current) return;
+
+        // Cinematic Looping Typing Animation
+        const timer = setTimeout(() => {
+            const splitHero = new SplitType(heroTextRef.current!, { types: "chars" });
+            const splitDesc = new SplitType(descRef.current!, { types: "chars" });
+
+            const heroChars = splitHero.chars || [];
+            const descChars = splitDesc.chars || [];
+
+            // Initial state: hidden but retaining space to prevent layout shifts
+            gsap.set([heroChars, descChars], { visibility: "hidden", opacity: 0 });
+
+            const tl = gsap.timeline({ repeat: -1 });
+
+            // Type Let's Talk
+            if (heroChars.length > 0) {
+                tl.to(heroChars, {
+                    visibility: "visible",
+                    opacity: 1,
+                    stagger: 0.08, // Slow, dramatic typing
+                    duration: 0.01,
+                    ease: "none"
+                });
+            }
+
+            tl.to({}, { duration: 0.5 }); // Pause
+
+            // Type Description
+            if (descChars.length > 0) {
+                tl.to(descChars, {
+                    visibility: "visible",
+                    opacity: 1,
+                    stagger: 0.02, // Fast, swift typing
+                    duration: 0.01,
+                    ease: "none"
+                });
+            }
+
+            // Hold reading time
+            tl.to({}, { duration: 4.5 });
+
+            // Erase Description backwards
+            if (descChars.length > 0) {
+                tl.to([...descChars].reverse(), {
+                    opacity: 0,
+                    stagger: 0.01,
+                    duration: 0.01,
+                    ease: "none",
+                    onComplete: () => {
+                        gsap.set(descChars, { visibility: "hidden" });
+                    }
+                });
+            }
+
+            // Erase Hero Title backwards
+            if (heroChars.length > 0) {
+                tl.to([...heroChars].reverse(), {
+                    opacity: 0,
+                    stagger: 0.03,
+                    duration: 0.01,
+                    ease: "none",
+                    onComplete: () => {
+                        gsap.set(heroChars, { visibility: "hidden" });
+                    }
+                });
+            }
+
+            // Clean pause before loop restarts
+            tl.to({}, { duration: 1 });
+
+            // Static elements reveal (runs only once!)
+            gsap.fromTo(
+                labelRef.current,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.2 }
+            );
+
+            gsap.fromTo(
+                mapRef.current,
+                { scale: 0.95, opacity: 0, filter: "blur(5px)" },
+                { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1.5, ease: "power4.out", delay: 0.5 }
+            );
+
+            return () => {
+                tl.kill();
+                splitHero.revert();
+                splitDesc.revert();
+            };
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className="grain-overlay bg-black selection:bg-white selection:text-black">
 
@@ -55,12 +150,14 @@ export default function KontakPage() {
 
                         {/* Top Anchor: Label & Massive Text */}
                         <div className="max-w-3xl mt-32 md:mt-48 lg:mt-56">
-                            <p className="mb-4 md:mb-12 flex items-center gap-3 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
+                            <p ref={labelRef} className="mb-4 md:mb-12 flex items-center gap-3 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                                 <Phone className="h-3 w-3" /> [ 01 ] Contact
                             </p>
 
                             {/* Typography Scale Extreme - Safe padding & line heights for mobile */}
-                            <h1 className="font-display font-black uppercase text-white tracking-tighter"
+                            <h1
+                                ref={heroTextRef}
+                                className="font-display font-black uppercase text-white tracking-tighter"
                                 style={{
                                     fontSize: "clamp(3.5rem, 11vw, 11rem)",
                                     lineHeight: "0.95",
@@ -72,22 +169,22 @@ export default function KontakPage() {
                         <div className="flex-1"></div> {/* Spacer pendorong the void */}
 
                         {/* Bottom Anchor: Description & Location */}
-                        <div className="mt-24 lg:mt-32 w-full max-w-2xl">
-                            <p className="font-body text-sm leading-relaxed text-white/50 mb-12 max-w-sm">
+                        <div className="mt-24 lg:mt-32 w-full flex flex-col justify-center">
+                            <p ref={descRef} className="font-body text-base lg:text-lg leading-relaxed text-white/50 mb-16 md:mb-24 max-w-lg lg:max-w-xl">
                                 Ruang diskusi untuk arsitektur digital dan kolaborasi kreatif. Terbuka
                                 untuk membongkar standar industri bersama audiens global dan lokal.
                             </p>
 
-                            {/* Re-added Map Block - Minimal Editorial Style */}
-                            <div className="mt-12 overflow-hidden border border-white/10 group cursor-crosshair w-full md:max-w-[500px]">
-                                <div className="relative aspect-[16/9] bg-[#0a0a0a] transition-colors duration-500 group-hover:bg-[#0ea5e9]/5">
+                            {/* Re-added Map Block - Minimal Editorial Style - Full Width Full Right */}
+                            <div ref={mapRef} className="w-full overflow-hidden border border-white/10 group cursor-crosshair">
+                                <div className="relative aspect-[21/9] sm:aspect-[24/9] bg-[#0a0a0a] transition-colors duration-500 group-hover:bg-[#0ea5e9]/5">
                                     <div className="flex h-full flex-col items-center justify-center gap-4 transition-transform duration-500 group-hover:scale-105">
-                                        <MapPin className="h-6 w-6 text-white/30 group-hover:text-[#0ea5e9] transition-colors" />
+                                        <MapPin className="h-6 w-6 lg:h-8 lg:w-8 text-white/30 group-hover:text-[#0ea5e9] transition-colors" />
                                         <div className="text-center">
-                                            <p className="font-display text-sm font-black uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Bandung, Indonesia</p>
-                                            <p className="font-body text-[10px] text-white/30 tracking-[0.2em] uppercase mt-1">GMT+7</p>
+                                            <p className="font-display text-sm md:text-base lg:text-lg font-black uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Bandung, Indonesia</p>
+                                            <p className="font-body text-[10px] lg:text-xs text-white/30 tracking-[0.3em] uppercase mt-2">GMT+7</p>
                                         </div>
-                                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors relative">
+                                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-3 font-body text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors relative">
                                             <span className="border-b border-white/20 hover:border-white pb-1 transition-colors">View Coordinates</span>
                                             <ExternalLink className="h-3 w-3 -mt-1" />
                                         </a>
