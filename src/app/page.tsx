@@ -12,14 +12,14 @@ export default function Home() {
       <Navbar />
       <Hero />
       <OverthinkingCorner />
-      <ClientMarquee />
-      <BentoGrid limit={4} showViewAll />
       <ImmersiveImage
         imageUrl="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&q=80"
         alt="Cinematic moment"
         quote={`"Karya terbaik lahir dari momen jeda"`}
-        attribution="— sebats, manifesto"
+        attribution="— sebat's manifesto"
       />
+      <BentoGrid limit={4} showViewAll />
+      <ClientMarquee />
       <Footer />
     </div>
   );

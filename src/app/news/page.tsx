@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Newspaper, Clock, ArrowRight, PenTool, Tag } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ClientMarquee from "@/components/ClientMarquee";
 
 const featuredArticle = {
     title: "Mengapa Gen Z Memilih 'Slow Living' Dibanding Hustle Culture",
@@ -181,6 +182,7 @@ export default function NewsPage() {
                 </div>
             </section>
 
+            <ClientMarquee />
             <Footer />
         </div>
     );

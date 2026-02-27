@@ -91,9 +91,6 @@ export default function KaryaPage() {
                 </div>
             </section>
 
-            {/* Client Marquee */}
-            <ClientMarquee />
-
             {/* Case Studies Grid with Precise Metrics */}
             <section className="border-grid-t bg-white py-20">
                 <div className="container-main">
@@ -157,6 +154,7 @@ export default function KaryaPage() {
             {/* Services */}
             <ServicesGrid />
 
+            <ClientMarquee />
             <Footer />
         </div>
     );

@@ -140,24 +140,6 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-
-            {/* Marquee Bar */}
-            <div className="hero-marquee" style={{ opacity: 0 }}>
-                <Marquee speed={40} autoFill gradient={false}>
-                    <span style={{
-                        whiteSpace: "nowrap",
-                        paddingRight: "1rem",
-                        fontFamily: "var(--font-display), system-ui, sans-serif",
-                        fontSize: "0.875rem",
-                        fontWeight: 900,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.3em",
-                        color: "rgba(255,255,255,0.2)",
-                    }}>
-                        AMBIL JEDA // SEBATS DULU // REHAT SEJENAK // OVERTHINKING AREA //&nbsp;
-                    </span>
-                </Marquee>
-            </div>
         </section>
     );
 }

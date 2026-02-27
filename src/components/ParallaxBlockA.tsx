@@ -85,7 +85,7 @@ export default function ParallaxBlockA() {
                         di antara hembusan napas dan obrolan tanpa filter.
                     </p>
                     <p className="reveal-item mt-4 max-w-sm font-body text-sm leading-relaxed text-white/40 md:text-base" style={{ opacity: 0 }}>
-                        sebats, hadir sebagai ruang kreatif yang merayakan kemanusiaan di tengah hustle culture.
+                        sebat&apos;s hadir sebagai ruang kreatif yang merayakan kemanusiaan di tengah hustle culture.
                     </p>
                 </div>
             </div>

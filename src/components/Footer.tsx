@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="container-main pt-16 md:pt-24">
                 <Link href="/" className="group inline-block">
                     <span className="font-display font-black tracking-[0.06em] text-white transition-colors duration-300 group-hover:text-primary" style={{ fontSize: "clamp(3rem, 10vw, 8rem)", lineHeight: "0.85" }}>
-                        sebats,
+                        sebat&apos;s
                     </span>
                 </Link>
                 <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-white/40 md:text-base">
@@ -58,7 +58,7 @@ export default function Footer() {
 
                 <div>
                     <p className="mb-4 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Kontak</p>
-                    <a href="https://wa.me/6281234567890?text=Halo%20sebats,%20saya%20ingin%20memulai%20project" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 border border-primary/30 px-5 py-3 font-body text-xs font-bold uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-black">
+                    <a href="https://wa.me/6281234567890?text=Halo%20sebat's%20saya%20ingin%20memulai%20project" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 border border-primary/30 px-5 py-3 font-body text-xs font-bold uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-black">
                         <MessageCircle className="h-4 w-4" />
                         Start a Project
                     </a>
@@ -79,7 +79,7 @@ export default function Footer() {
             </div>
 
             <div className="container-main flex flex-col items-center justify-between gap-3 py-6 md:flex-row">
-                <p className="font-body text-[10px] uppercase tracking-[0.3em] text-white/30">© 2026 sebats, Creative Media Studio. All Rights Reserved.</p>
+                <p className="font-body text-[10px] uppercase tracking-[0.3em] text-white/30">© 2026 sebat&apos;s Creative Media Studio. All Rights Reserved.</p>
                 <p className="font-body text-[10px] uppercase tracking-[0.3em] text-white/20">Built with ☕ & overthinking</p>
             </div>
         </footer>

@@ -66,7 +66,7 @@ export default function Navbar() {
                             ref={logoRef}
                             className="font-display text-3xl font-black tracking-[0.08em] text-white transition-colors duration-300 group-hover:text-primary md:text-4xl lg:text-5xl"
                         >
-                            sebats,
+                            sebat&apos;s
                         </span>
                     </div>
                 </Link>

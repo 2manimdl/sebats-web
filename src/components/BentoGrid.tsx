@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const projects = [
     {
@@ -39,116 +40,193 @@ const containerVariants = {
     hidden: {},
     visible: {
         transition: {
-            staggerChildren: 0.1,
+            staggerChildren: 0.15,
         },
     },
 };
 
 const cardVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 40, opacity: 0 },
     visible: {
         y: 0,
         opacity: 1,
         transition: {
-            duration: 0.6,
+            duration: 0.7,
             ease: [0.22, 1, 0.36, 1] as const,
         },
     },
 };
 
 interface BentoGridProps {
-    /** Show only the first N items (for homepage featured view) */
     limit?: number;
-    /** Show "Lihat Semua" link */
     showViewAll?: boolean;
 }
 
 export default function BentoGrid({ limit, showViewAll = false }: BentoGridProps) {
     const items = limit ? projects.slice(0, limit) : projects;
 
+    // Split items: first goes as featured, rest as secondary
+    const featured = items[0];
+    const secondary = items.slice(1);
+
     return (
-        <section id="karya" className="border-grid-t bg-black py-20">
+        <section id="karya" className="border-grid-t bg-black py-20 md:py-28">
             <div className="container-main">
                 {/* Section Header */}
-                <div className="mb-14 border-grid-b pb-6">
-                    <p className="mb-2 font-body text-xs font-medium uppercase tracking-[0.3em] text-primary">
+                <div className="mb-16 border-grid-b pb-8">
+                    <p className="mb-3 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         Portfolio
                     </p>
-                    <div className="flex items-end justify-between">
-                        <h2 className="font-display text-4xl font-black uppercase tracking-tight text-white md:text-5xl">
+                    <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                        <h2
+                            className="font-display font-black uppercase text-white"
+                            style={{
+                                fontSize: "clamp(2rem, 5vw, 4rem)",
+                                lineHeight: "0.85",
+                                letterSpacing: "-0.03em",
+                            }}
+                        >
                             Karya Kami
                         </h2>
-                        <div className="flex items-center gap-4">
-                            <p className="hidden font-body text-xs uppercase tracking-[0.2em] text-white/50 md:block">
+                        <div className="flex items-center gap-6">
+                            <p className="hidden font-body text-xs uppercase tracking-[0.15em] text-white/30 md:block">
                                 Koleksi pilihan
                             </p>
                             {showViewAll && (
                                 <a
                                     href="/karya"
-                                    className="group inline-flex items-center gap-2 border border-white/20 px-4 py-2 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white/80 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                                    className="group inline-flex items-center gap-3 border border-primary/30 px-6 py-3 font-body text-[10px] font-bold uppercase tracking-[0.25em] text-primary transition-all duration-500 hover:border-primary hover:bg-primary hover:text-black"
                                 >
                                     Lihat Semua
-                                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                                    <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
                                 </a>
                             )}
                         </div>
                     </div>
                 </div>
 
-                {/* Bento Grid */}
+                {/* Editorial Showcase Grid */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-60px" }}
-                    className="grid auto-rows-auto grid-cols-1 gap-0 border-l border-t border-white/15 sm:grid-cols-2 lg:grid-cols-3"
+                    className="grid grid-cols-1 gap-[1px] bg-white/10 lg:grid-cols-2"
                 >
-                    {items.map((project, index) => (
+                    {/* Featured Card — Large */}
+                    {featured && (
                         <motion.article
-                            key={project.title}
                             variants={cardVariants}
-                            className={`group cursor-pointer relative border-b border-r border-white/15 ${index === 0 ? "sm:row-span-2" : ""}`}
+                            className="group relative cursor-pointer overflow-hidden bg-black lg:row-span-2"
                         >
-                            {/* Image */}
-                            <div className={`relative w-full overflow-hidden ${index === 0 ? "aspect-[3/5]" : "aspect-[4/3]"}`}>
+                            <div className="relative aspect-[3/4] w-full overflow-hidden sm:aspect-[4/5] lg:aspect-auto lg:h-full lg:min-h-[600px]">
+                                {/* Image */}
                                 <img
-                                    src={project.imageUrl}
-                                    alt={project.title}
-                                    className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                                    src={featured.imageUrl}
+                                    alt={featured.title}
+                                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
                                 />
 
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/40" />
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-60" />
 
-                                {/* Category badge */}
-                                <div className="absolute top-4 left-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                    <span className="bg-primary px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.25em] text-black">
-                                        {project.category}
+                                {/* Ghost Number */}
+                                <span
+                                    className="absolute right-6 top-6 font-display font-black text-white/[0.04] transition-colors duration-700 group-hover:text-primary/[0.08]"
+                                    style={{ fontSize: "clamp(6rem, 12vw, 14rem)", lineHeight: "0.8" }}
+                                >
+                                    01
+                                </span>
+
+                                {/* Category */}
+                                <div className="absolute left-6 top-6 z-10">
+                                    <span className="inline-block border border-primary/40 bg-black/60 px-3 py-1.5 font-body text-[9px] font-bold uppercase tracking-[0.3em] text-primary backdrop-blur-sm">
+                                        {featured.category}
                                     </span>
                                 </div>
 
-                                {/* Metrics Reveal Badge */}
-                                <div className="absolute bottom-4 right-4 translate-y-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                                    <div className="flex items-center gap-1.5 border border-white/30 bg-black/80 px-3 py-1.5 backdrop-blur-md">
+                                {/* Content at bottom */}
+                                <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-10">
+                                    <div className="mb-3 h-px w-10 bg-primary transition-all duration-700 group-hover:w-16" />
+                                    <h3
+                                        className="font-display font-black uppercase text-white transition-colors duration-500 group-hover:text-primary"
+                                        style={{
+                                            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+                                            lineHeight: "0.9",
+                                            letterSpacing: "-0.02em",
+                                        }}
+                                    >
+                                        {featured.title}
+                                    </h3>
+                                    <div className="mt-4 flex items-center gap-3">
                                         <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-                                        <span className="font-body text-[10px] font-bold uppercase tracking-[0.15em] text-white">
-                                            {project.metric}
+                                        <span className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
+                                            {featured.metric}
                                         </span>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Card Footer */}
-                            <div className="flex items-center justify-between border-t border-white/15 bg-black px-4 py-3 transition-colors duration-300 group-hover:bg-white/5">
-                                <h3 className="font-display text-xs font-bold uppercase tracking-wide text-white">
-                                    {project.title}
-                                </h3>
-                                <span className="font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                                    {project.category}
-                                </span>
+                                {/* Bottom gold accent line on hover */}
+                                <div className="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 bg-primary transition-transform duration-700 group-hover:scale-x-100" />
                             </div>
                         </motion.article>
-                    ))}
+                    )}
+
+                    {/* Secondary Cards — stacked on right, last one spans full if odd */}
+                    {secondary.map((project, index) => {
+                        const isLastOdd = secondary.length % 2 === 1 && index === secondary.length - 1;
+                        return (
+                            <motion.article
+                                key={project.title}
+                                variants={cardVariants}
+                                className={`group relative cursor-pointer overflow-hidden bg-black ${isLastOdd ? "lg:col-span-2" : ""}`}
+                            >
+                                <div className={`relative w-full overflow-hidden ${isLastOdd ? "aspect-[16/9] sm:aspect-[21/9] lg:aspect-auto lg:min-h-[298px]" : "aspect-[16/9] sm:aspect-[2/1] lg:aspect-auto lg:h-full lg:min-h-[298px]"}`}>
+                                    {/* Image */}
+                                    <img
+                                        src={project.imageUrl}
+                                        alt={project.title}
+                                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                                    />
+
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-60" />
+
+                                    {/* Ghost Number */}
+                                    <span
+                                        className="absolute right-4 top-4 font-display font-black text-white/[0.04] transition-colors duration-700 group-hover:text-primary/[0.08] md:right-6 md:top-6"
+                                        style={{ fontSize: "clamp(4rem, 8vw, 8rem)", lineHeight: "0.8" }}
+                                    >
+                                        {String(index + 2).padStart(2, "0")}
+                                    </span>
+
+                                    {/* Category */}
+                                    <div className="absolute left-4 top-4 z-10 md:left-6 md:top-6">
+                                        <span className="inline-block border border-primary/40 bg-black/60 px-3 py-1.5 font-body text-[9px] font-bold uppercase tracking-[0.3em] text-primary backdrop-blur-sm">
+                                            {project.category}
+                                        </span>
+                                    </div>
+
+                                    {/* Content at bottom */}
+                                    <div className="absolute bottom-0 left-0 right-0 z-10 p-4 md:p-6">
+                                        <div className="mb-2 h-px w-8 bg-primary transition-all duration-700 group-hover:w-12" />
+                                        <h3 className="font-display text-lg font-black uppercase tracking-tight text-white transition-colors duration-500 group-hover:text-primary md:text-xl">
+                                            {project.title}
+                                        </h3>
+                                        <div className="mt-2 flex items-center gap-2">
+                                            <span className="inline-block h-1 w-1 rounded-full bg-primary" />
+                                            <span className="font-body text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">
+                                                {project.metric}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Bottom gold accent line on hover */}
+                                    <div className="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 bg-primary transition-transform duration-700 group-hover:scale-x-100" />
+                                </div>
+                            </motion.article>
+                        );
+                    })}
                 </motion.div>
             </div>
         </section>

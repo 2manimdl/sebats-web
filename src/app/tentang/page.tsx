@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Users, Briefcase, Lightbulb, Target, Heart, Coffee } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ClientMarquee from "@/components/ClientMarquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -186,6 +187,7 @@ export default function TentangPage() {
                 </div>
             </section>
 
+            <ClientMarquee />
             <Footer />
         </div>
     );

@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "sebats, — Creative Media Studio",
+  title: "sebat's — Creative Media Studio",
   description: "Ambil Jeda, Sebats Dulu. Ruang kreatif yang merayakan momen jeda di tengah hustle culture.",
 };
 

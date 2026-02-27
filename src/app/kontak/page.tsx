@@ -3,13 +3,22 @@
 import { ArrowRight, Phone, MapPin, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ClientMarquee from "@/components/ClientMarquee";
 
 const contacts = [
     {
+<<<<<<< Updated upstream
         label: "Business",
         description: "Bicarakan visi kolaborasi atau inisiasi project baru bersama kami.",
         cta: "WhatsApp Us",
         href: "https://wa.me/6281234567890?text=Halo%20sebats,%20saya%20ingin%20diskusi%20project",
+=======
+        label: "Business Inquiries",
+        description: "Mau kolaborasi atau mulai project? Langsung chat aja.",
+        cta: "Chat via WhatsApp",
+        href: "https://wa.me/6281234567890?text=Halo%20sebat's%20saya%20ingin%20diskusi%20project",
+        icon: MessageCircle,
+>>>>>>> Stashed changes
     },
     {
         label: "Careers",
@@ -151,6 +160,7 @@ export default function KontakPage() {
                 </div>
             </section>
 
+            <ClientMarquee />
             <Footer />
         </div>
     );
