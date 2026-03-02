@@ -1,8 +1,14 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Newspaper, Clock, ArrowRight, PenTool, Tag } from "lucide-react";
 import ClientMarquee from "@/components/ClientMarquee";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const featuredArticle = {
     title: "Mengapa Gen Z Memilih 'Slow Living' Dibanding Hustle Culture",
@@ -65,44 +71,132 @@ const articles = [
 ];
 
 export default function NewsPage() {
+    const heroSectionRef = useRef<HTMLElement>(null);
+    const featuredSectionRef = useRef<HTMLElement>(null);
+    const heroRef = useRef<HTMLHeadingElement>(null);
+    const featuredImgRef = useRef<HTMLDivElement>(null);
+    const featuredTextRef = useRef<HTMLDivElement>(null);
+    const editorialLabelRef = useRef<HTMLParagraphElement>(null);
+
+    useEffect(() => {
+        if (!heroRef.current) return;
+
+        const split = new SplitType(heroRef.current!, { types: "chars" });
+
+        let ctx = gsap.context(() => {
+            // Set initial states
+            if (split.chars) {
+                gsap.set(split.chars, {
+                    y: 100,
+                    opacity: 0,
+                    rotateX: -90,
+                    transformOrigin: "50% 50% -50px"
+                });
+            }
+            gsap.set(editorialLabelRef.current, { y: 30, opacity: 0 });
+            gsap.set(featuredImgRef.current, { y: 60, opacity: 0, scale: 0.95 });
+            gsap.set(featuredTextRef.current, { x: 30, opacity: 0 });
+
+            // Hero Animation Timeline
+            const tlHero = gsap.timeline({
+                scrollTrigger: {
+                    trigger: heroSectionRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    // play, reverse (when scrolling down past it), play (when scrolling back up into it), reverse (when scrolling up past it)
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+
+            if (split.chars) {
+                tlHero.to(split.chars, {
+                    y: 0,
+                    opacity: 1,
+                    rotateX: 0,
+                    stagger: 0.05,
+                    duration: 1.2,
+                    ease: "power4.out"
+                }, 0.1);
+            }
+            tlHero.to(editorialLabelRef.current, {
+                y: 0, opacity: 1, duration: 1.2, ease: "power3.out"
+            }, 0.8);
+
+            // Featured Article Animation Timeline
+            const tlFeatured = gsap.timeline({
+                scrollTrigger: {
+                    trigger: featuredSectionRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+
+            tlFeatured.to(featuredImgRef.current, {
+                y: 0, opacity: 1, scale: 1, duration: 1.5, ease: "power4.out"
+            }, 0);
+            tlFeatured.to(featuredTextRef.current, {
+                x: 0, opacity: 1, duration: 1.2, ease: "power3.out"
+            }, 0.3);
+
+        }); // scoping using heroSectionRef as root is okay but we'll omit scope to access all refs
+
+        return () => {
+            ctx.revert();
+            split.revert();
+        };
+    }, []);
+
     return (
         <div className="grain-overlay">
 
             {/* Hero */}
-            <section className="flex min-h-[40vh] items-end bg-white cretivox-grid pb-12 pt-32 md:pb-16">
+            <section ref={heroSectionRef} className="flex min-h-[40vh] items-end bg-white cretivox-grid pb-12 pt-32 md:pb-16">
                 <div className="container-main">
-                    <p className="mb-4 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
+                    <p ref={editorialLabelRef} className="mb-4 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Newspaper className="h-3 w-3" /> Editorial
                     </p>
-                    <h1 className="font-display font-black uppercase text-black" style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
+                    <h1 ref={heroRef} className="font-display font-black uppercase text-black" style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
                         News &<br /><span className="text-primary">Stories.</span>
                     </h1>
                 </div>
             </section>
 
             {/* Featured Article */}
-            <section className="border-grid-t bg-white">
-                <div className="container-main py-12 md:py-0">
-                    <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
-                        <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[500px]">
-                            <img src={featuredArticle.imageUrl} alt={featuredArticle.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <div className="absolute bottom-6 left-6 right-6">
-                                <span className="inline-block bg-primary px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.25em] text-black">{featuredArticle.category}</span>
-                            </div>
+            <section ref={featuredSectionRef} className="border-grid-t bg-white">
+                <div className="container-main py-16 md:py-24 lg:py-32">
+                    <div className="grid grid-cols-1 gap-12 md:gap-16 lg:gap-24 md:grid-cols-2 items-center">
+                        <div ref={featuredImgRef} className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[500px] lg:min-h-[650px] w-full">
+                            <img src={featuredArticle.imageUrl} alt={featuredArticle.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105 grayscale hover:grayscale-0" />
                         </div>
-                        <div className="flex flex-col justify-center border border-t-0 border-black/10 p-8 md:border-t md:border-l-0 md:p-14">
-                            <div className="mb-4 flex items-center gap-3">
-                                <span className="font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">{featuredArticle.author}</span>
+                        <div ref={featuredTextRef} className="flex flex-col justify-center lg:pr-12">
+                            <div className="mb-6 md:mb-10 flex flex-wrap items-center gap-3">
+                                <span className="inline-block bg-primary px-3 py-1 font-body text-[9px] font-bold uppercase tracking-[0.25em] text-black">
+                                    {featuredArticle.category}
+                                </span>
                                 <span className="text-black/20">•</span>
-                                <span className="inline-flex items-center gap-1 font-body text-[10px] uppercase tracking-[0.2em] text-muted">
-                                    <Clock className="h-3 w-3" /> {featuredArticle.timeAgo}
+                                <span className="font-body text-[10px] font-black uppercase tracking-[0.2em] text-black/40">{featuredArticle.author}</span>
+                                <span className="text-black/20">•</span>
+                                <span className="inline-flex items-center gap-1 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">
+                                    <Clock className="h-3 w-3 -mt-0.5" /> {featuredArticle.timeAgo}
                                 </span>
                             </div>
-                            <h2 className="font-display text-2xl font-black uppercase tracking-tight text-black md:text-3xl" style={{ lineHeight: "0.9" }}>{featuredArticle.title}</h2>
-                            <p className="mt-4 font-body text-sm leading-relaxed text-muted">{featuredArticle.excerpt}</p>
-                            <a href="#" className="group mt-6 inline-flex items-center gap-2 font-body text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                                Baca Selengkapnya <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+                            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black" style={{ lineHeight: "0.85" }}>
+                                {featuredArticle.title}
+                            </h2>
+                            <p className="mt-8 md:mt-10 font-body text-base lg:text-lg leading-relaxed text-black/60 max-w-xl">
+                                {featuredArticle.excerpt}
+                            </p>
+
+                            {/* Pure Typographic CTA */}
+                            <a href="#" className="group mt-12 inline-flex items-center gap-4 font-body text-[11px] font-black uppercase tracking-[0.3em] text-black self-start pb-1">
+                                <span className="relative pb-2 overflow-hidden">
+                                    Baca Selengkapnya
+                                    {/* Surgical thin underline */}
+                                    <span className="absolute left-0 bottom-0 w-full h-[2px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out"></span>
+                                </span>
+                                {/* Minimalist arrow */}
+                                <ArrowRight className="h-4 w-4 text-black/40 group-hover:text-black transition-all duration-500 group-hover:translate-x-2" />
                             </a>
                         </div>
                     </div>
@@ -120,7 +214,7 @@ export default function NewsPage() {
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-60px" }}
+                        viewport={{ once: false, amount: 0.1, margin: "50px" }}
                         variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
                         className="grid grid-cols-1 gap-0 border-l border-t border-black/10 sm:grid-cols-2 lg:grid-cols-3"
                     >
@@ -157,8 +251,14 @@ export default function NewsPage() {
             </section>
 
             {/* UGC CTA — "Write In Here" */}
-            <section className="border-grid-t bg-black py-20 text-white">
-                <div className="container-main text-center">
+            <section className="border-grid-t bg-black py-20 text-white overflow-hidden">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="container-main text-center"
+                >
                     <PenTool className="mx-auto mb-6 h-8 w-8 text-primary" />
                     <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.85" }}>
                         Sambat Disini.
@@ -176,7 +276,7 @@ export default function NewsPage() {
                             <span className="font-body text-xs text-white/50">Google Docs / Notion / PDF</span>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </section>
 
             <ClientMarquee />
