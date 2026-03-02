@@ -1,86 +1,100 @@
 import Link from "next/link";
-import { Instagram, Linkedin, MessageCircle, ExternalLink, ArrowUpRight, FileText } from "lucide-react";
-
-const quickLinks = [
-    { label: "Tentang", href: "/tentang" },
-    { label: "Karya", href: "/karya" },
-    { label: "News", href: "/news" },
-    { label: "Karir", href: "#" },
-];
-
-const socials = [
-    { label: "Instagram", href: "https://instagram.com", icon: Instagram },
-    { label: "TikTok", href: "https://tiktok.com", icon: ExternalLink },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-];
+import { Instagram, Linkedin, Twitter, Youtube, Mail, Circle } from "lucide-react";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
     return (
-        <footer id="kontak" className="border-grid-t bg-black text-white">
-            <div className="container-main pt-16 md:pt-24">
-                <Link href="/" className="group inline-block">
-                    <span className="font-display font-black tracking-[0.06em] text-white transition-colors duration-300 group-hover:text-primary" style={{ fontSize: "clamp(3rem, 10vw, 8rem)", lineHeight: "0.85" }}>
-                        sebat&apos;s
-                    </span>
-                </Link>
-                <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-white/40 md:text-base">
-                    Ruang kreatif yang merayakan momen jeda di tengah hustle culture.
-                    Karena istirahat bukan kelemahan — itu strategi.
-                </p>
-            </div>
+        <footer id="kontak" className={styles.footer}>
+            <div className={styles.inner}>
 
-            <div className="container-main grid grid-cols-1 gap-10 border-b border-white/10 py-12 sm:grid-cols-2 md:grid-cols-4 md:py-16">
-                <div>
-                    <p className="mb-4 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Navigasi</p>
-                    <ul className="flex flex-col gap-3">
-                        {quickLinks.map((link) => (
-                            <li key={link.label}>
-                                <Link href={link.href} className="font-body text-sm text-white/60 transition-colors duration-300 hover:text-white">{link.label}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                {/* ─── Top Section: Brand + Links ─── */}
+                <div className={styles.topSection}>
 
-                <div>
-                    <p className="mb-4 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Socials</p>
-                    <ul className="flex flex-col gap-3">
-                        {socials.map((social) => (
-                            <li key={social.label}>
-                                <a href={social.href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 font-body text-sm text-white/60 transition-colors duration-300 hover:text-white">
-                                    <social.icon className="h-4 w-4" />
-                                    {social.label}
-                                    <ArrowUpRight className="h-3 w-3 translate-x-0 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                    {/* Left Column: Brand & Info */}
+                    <div className={styles.brandColumn}>
+                        <Link href="/" className="mb-6 inline-block">
+                            <span className="font-display text-3xl font-black tracking-wide text-white transition-colors hover:text-primary md:text-4xl">
+                                sebats,
+                            </span>
+                        </Link>
 
-                <div>
-                    <p className="mb-4 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Kontak</p>
-                    <a href="https://wa.me/6281234567890?text=Halo%20sebat's%20saya%20ingin%20memulai%20project" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 border border-primary/30 px-5 py-3 font-body text-xs font-bold uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-black">
-                        <MessageCircle className="h-4 w-4" />
-                        Start a Project
-                    </a>
-                    <div className="mt-4 flex flex-col gap-2">
-                        <p className="font-body text-xs text-white/30">hello@sebats.id</p>
-                        <a href="#" className="inline-flex items-center gap-1 font-body text-xs text-white/40 transition-colors hover:text-primary">
-                            <FileText className="h-3 w-3" />
-                            Download Presskit
-                        </a>
+                        <p className="mb-8 font-body text-sm leading-relaxed text-white/60">
+                            Hassle-free creative agency. Ruang kreatif yang merayakan momen jeda di tengah hiruk-pikuk masyarakat modern.
+                        </p>
+
+                        <div className={styles.socialRow}>
+                            <a href="#" aria-label="Twitter"><Twitter className="h-5 w-5" /></a>
+                            <a href="#" aria-label="Instagram"><Instagram className="h-5 w-5" /></a>
+                            <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
+                            <a href="#" aria-label="YouTube"><Youtube className="h-5 w-5" /></a>
+                            <a href="#" aria-label="Email"><Mail className="h-5 w-5" /></a>
+                        </div>
+
+                        {/* Status Badge */}
+                        <div className={`${styles.statusBadge} font-body text-xs text-white/80`}>
+                            <Circle className="h-2.5 w-2.5 fill-green-500 text-green-500" />
+                            All systems operational
+                        </div>
+                    </div>
+
+                    {/* Right Columns: Links Grid */}
+                    <div className={styles.linksGrid}>
+
+                        {/* Col 1 — Layanan */}
+                        <div className={styles.linkColumn}>
+                            <h3 className="font-body text-sm font-bold text-white">Layanan</h3>
+                            <Link href="#" className="inline-flex items-center gap-2 font-body text-sm text-white/60 transition-colors hover:text-primary">
+                                Creative Video
+                                <span className={styles.newBadge}>New</span>
+                            </Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Brand Strategy</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Social Media</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">KOL Management</Link>
+                        </div>
+
+                        {/* Col 2 — Perusahaan */}
+                        <div className={styles.linkColumn}>
+                            <h3 className="font-body text-sm font-bold text-white">Perusahaan</h3>
+                            <Link href="/tentang" className="font-body text-sm text-white/60 transition-colors hover:text-white">Tentang Kami</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Karir</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Brand Assets</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Changelog</Link>
+                        </div>
+
+                        {/* Col 3 — Ekosistem */}
+                        <div className={styles.linkColumn}>
+                            <h3 className="font-body text-sm font-bold text-white">Ekosistem</h3>
+                            <Link href="/news" className="font-body text-sm text-white/60 transition-colors hover:text-white">News Platform</Link>
+                            <Link href="/karya" className="font-body text-sm text-white/60 transition-colors hover:text-white">Portofolio</Link>
+                            <Link href="#sambatan" className="font-body text-sm text-white/60 transition-colors hover:text-white">Curhat Area</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Community</Link>
+                        </div>
+
+                        {/* Col 4 — Kolaborasi */}
+                        <div className={styles.linkColumn}>
+                            <h3 className="font-body text-sm font-bold text-white">Kolaborasi</h3>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Start a Project</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Media Partner</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Support Docs</Link>
+                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Contact</Link>
+                        </div>
+
                     </div>
                 </div>
 
-                <div className="flex flex-col justify-end">
-                    <p className="font-display font-black uppercase text-white/[0.06]" style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)", lineHeight: "0.85" }}>
-                        Ambil Jeda,<br />Sebats Dulu.
+                {/* ─── Bottom Section: Baseplate ─── */}
+                <div className={styles.baseplate}>
+                    <p className="font-body text-xs text-white/40">
+                        © 2026 sebats, Creative Media Studio. All rights reserved.
                     </p>
-                </div>
-            </div>
 
-            <div className="container-main flex flex-col items-center justify-between gap-3 py-6 md:flex-row">
-                <p className="font-body text-[10px] uppercase tracking-[0.3em] text-white/30">© 2026 sebat&apos;s Creative Media Studio. All Rights Reserved.</p>
-                <p className="font-body text-[10px] uppercase tracking-[0.3em] text-white/20">Built with ☕ & overthinking</p>
+                    <div className={`${styles.legalLinks} font-body text-xs text-white/40`}>
+                        <Link href="#">Privacy Policy</Link>
+                        <Link href="#">Terms</Link>
+                        <Link href="#">Code of conduct</Link>
+                    </div>
+                </div>
+
             </div>
         </footer>
     );

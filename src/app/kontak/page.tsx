@@ -1,24 +1,14 @@
 "use client";
 
 import { ArrowRight, Phone, MapPin, ExternalLink } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ClientMarquee from "@/components/ClientMarquee";
 
 const contacts = [
     {
-<<<<<<< Updated upstream
         label: "Business",
         description: "Bicarakan visi kolaborasi atau inisiasi project baru bersama kami.",
         cta: "WhatsApp Us",
         href: "https://wa.me/6281234567890?text=Halo%20sebats,%20saya%20ingin%20diskusi%20project",
-=======
-        label: "Business Inquiries",
-        description: "Mau kolaborasi atau mulai project? Langsung chat aja.",
-        cta: "Chat via WhatsApp",
-        href: "https://wa.me/6281234567890?text=Halo%20sebat's%20saya%20ingin%20diskusi%20project",
-        icon: MessageCircle,
->>>>>>> Stashed changes
     },
     {
         label: "Careers",
@@ -37,13 +27,6 @@ const contacts = [
 export default function KontakPage() {
     return (
         <div className="grain-overlay bg-black selection:bg-white selection:text-black">
-
-            {/* Header Guard: Solid black background to prevent the white column from ruining the transparent Navbar when scrolling up */}
-            <div className="fixed top-0 left-0 w-full h-20 md:h-24 bg-black z-40" />
-
-            <div className="relative z-50">
-                <Navbar />
-            </div>
 
             {/* Controlled Asymmetry Layout: 65% Black / 35% White */}
             <section className="min-h-screen">
@@ -161,7 +144,6 @@ export default function KontakPage() {
             </section>
 
             <ClientMarquee />
-            <Footer />
         </div>
     );
 }

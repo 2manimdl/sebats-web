@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Newspaper, Clock, ArrowRight, PenTool, Tag } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ClientMarquee from "@/components/ClientMarquee";
 
 const featuredArticle = {
@@ -69,7 +67,6 @@ const articles = [
 export default function NewsPage() {
     return (
         <div className="grain-overlay">
-            <Navbar />
 
             {/* Hero */}
             <section className="flex min-h-[40vh] items-end bg-white cretivox-grid pb-12 pt-32 md:pb-16">
@@ -183,7 +180,6 @@ export default function NewsPage() {
             </section>
 
             <ClientMarquee />
-            <Footer />
         </div>
     );
 }

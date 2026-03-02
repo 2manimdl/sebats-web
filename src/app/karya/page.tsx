@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, ArrowRight } from "lucide-react";
-import Navbar from "@/components/Navbar";
 import ClientMarquee from "@/components/ClientMarquee";
 import ServicesGrid from "@/components/ServicesGrid";
-import Footer from "@/components/Footer";
 
 const caseStudies = [
     {
@@ -73,7 +71,6 @@ const caseStudies = [
 export default function KaryaPage() {
     return (
         <div className="grain-overlay">
-            <Navbar />
 
             {/* Typographic Hero */}
             <section className="flex min-h-[50vh] items-end bg-white cretivox-grid pb-12 pt-32 md:pb-16">
@@ -155,7 +152,6 @@ export default function KaryaPage() {
             <ServicesGrid />
 
             <ClientMarquee />
-            <Footer />
         </div>
     );
 }
