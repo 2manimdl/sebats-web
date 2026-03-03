@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
+<<<<<<< Updated upstream
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+=======
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+>>>>>>> Stashed changes
 import "./globals.css";
 
 const inter = Inter({
@@ -30,6 +34,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScroll>
+        <FloatingWhatsApp />
       </body>
     </html>
   );
