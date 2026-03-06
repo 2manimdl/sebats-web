@@ -144,9 +144,9 @@ export default function TentangPage() {
             ═══════════════════════════════════════════ */}
             <section className="relative w-full bg-black cretivox-grid">
                 {/* Spacer dikurangi agar teks tidak terlalu jatuh */}
-                <div style={{ height: "120px" }} className="w-full" aria-hidden="true"></div>
+                <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
 
-                <div className="container-main relative z-10" style={{ paddingBottom: "80px" }}>
+                <div className="container-main relative z-10" style={{ paddingBottom: "100px" }}>
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Users className="h-4 w-4" /> The Story So Far
                     </p>
@@ -163,7 +163,7 @@ export default function TentangPage() {
             {/* ═══════════════════════════════════════════
                 TIMELINE
             ═══════════════════════════════════════════ */}
-            <section className="bg-black" style={{ padding: "100px 0" }}>
+            <section className="bg-black" style={{ padding: "120px 0" }}>
                 <div className="container-main">
                     {/* Margin antar judul dengan konten diseimbangkan (60px) */}
                     <div style={{ marginBottom: "60px" }} className="flex flex-col md:flex-row md:items-end md:justify-between">
@@ -171,7 +171,7 @@ export default function TentangPage() {
                             <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                                 <Briefcase className="mb-0.5 inline h-3 w-3" /> Journey
                             </p>
-                            <h2 className="font-display text-4xl font-black uppercase text-white md:text-5xl">Timeline.</h2>
+                            <h2 className="font-display text-4xl font-black uppercase tracking-tight text-white md:text-6xl">Timeline.</h2>
                         </div>
                         <p className="mt-4 max-w-xs font-body text-xs uppercase tracking-[0.2em] text-white/30 md:mt-0 md:text-right">
                             Sejarah singkat bagaimana kami tumbuh bersama keresahan.
@@ -217,7 +217,7 @@ export default function TentangPage() {
             {/* ═══════════════════════════════════════════
                 TEAM
             ═══════════════════════════════════════════ */}
-            <section className="bg-black" style={{ padding: "100px 0" }}>
+            <section className="bg-black" style={{ padding: "120px 0" }}>
                 <div className="container-main">
                     <div style={{ marginBottom: "60px" }}>
                         <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Our People</p>
@@ -246,7 +246,7 @@ export default function TentangPage() {
             {/* ═══════════════════════════════════════════
                 DEPARTMENTS
             ═══════════════════════════════════════════ */}
-            <section className="bg-black" style={{ padding: "100px 0" }}>
+            <section className="bg-black" style={{ padding: "120px 0" }}>
                 <div className="container-main">
                     <div style={{ marginBottom: "60px" }} className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
                         <div>
