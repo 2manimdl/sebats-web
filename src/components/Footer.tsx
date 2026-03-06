@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Linkedin, Twitter, Youtube, Mail, Circle } from "lucide-react";
+import { Instagram, Linkedin, Twitter, Youtube, Mail } from "lucide-react";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -12,71 +12,52 @@ export default function Footer() {
 
                     {/* Left Column: Brand & Info */}
                     <div className={styles.brandColumn}>
-                        <Link href="/" className="mb-6 inline-block">
-                            <span className="font-display text-3xl font-black tracking-wide text-white transition-colors hover:text-primary md:text-4xl">
+                        <Link href="/" className="mb-5 inline-block">
+                            <span className="font-display text-4xl font-black tracking-wide text-white transition-colors hover:text-primary">
                                 sebats,
                             </span>
                         </Link>
 
-                        <p className="mb-8 font-body text-sm leading-relaxed text-white/60">
-                            Hassle-free creative agency. Ruang kreatif yang merayakan momen jeda di tengah hiruk-pikuk masyarakat modern.
+                        <p className="mb-8 max-w-sm font-body text-sm leading-relaxed text-white/50">
+                            Hassle-free creative agency. Merayakan momen jeda di tengah hiruk-pikuk kultur produktivitas tanpa batas.
                         </p>
 
                         <div className={styles.socialRow}>
-                            <a href="#" aria-label="Twitter"><Twitter className="h-5 w-5" /></a>
-                            <a href="#" aria-label="Instagram"><Instagram className="h-5 w-5" /></a>
-                            <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
-                            <a href="#" aria-label="YouTube"><Youtube className="h-5 w-5" /></a>
-                            <a href="#" aria-label="Email"><Mail className="h-5 w-5" /></a>
-                        </div>
-
-                        {/* Status Badge */}
-                        <div className={`${styles.statusBadge} font-body text-xs text-white/80`}>
-                            <Circle className="h-2.5 w-2.5 fill-green-500 text-green-500" />
-                            All systems operational
+                            <a href="#" aria-label="Instagram"><Instagram className="h-4 w-4" /></a>
+                            <a href="#" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
+                            <a href="#" aria-label="Twitter"><Twitter className="h-4 w-4" /></a>
+                            <a href="#" aria-label="YouTube"><Youtube className="h-4 w-4" /></a>
+                            <a href="mailto:hello@sebats.id" aria-label="Email"><Mail className="h-4 w-4" /></a>
                         </div>
                     </div>
 
-                    {/* Right Columns: Links Grid */}
+                    {/* Right Columns: Links Grid (Disusutkan jadi 3 Kolom) */}
                     <div className={styles.linksGrid}>
 
-                        {/* Col 1 — Layanan */}
+                        {/* Col 1 — Studio */}
                         <div className={styles.linkColumn}>
-                            <h3 className="font-body text-sm font-bold text-white">Layanan</h3>
-                            <Link href="#" className="inline-flex items-center gap-2 font-body text-sm text-white/60 transition-colors hover:text-primary">
-                                Creative Video
-                                <span className={styles.newBadge}>New</span>
-                            </Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Brand Strategy</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Social Media</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">KOL Management</Link>
+                            <h3 className="mb-3 font-body text-[10px] font-bold uppercase tracking-[0.25em] text-white/30">Studio</h3>
+                            <Link href="/tentang" className="font-body text-sm text-white/70 transition-colors hover:text-white">Tentang Kami</Link>
+                            <Link href="/karya" className="font-body text-sm text-white/70 transition-colors hover:text-white">Portofolio</Link>
+                            <Link href="/news" className="font-body text-sm text-white/70 transition-colors hover:text-white">Editorial & News</Link>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Karir</Link>
                         </div>
 
-                        {/* Col 2 — Perusahaan */}
+                        {/* Col 2 — Layanan */}
                         <div className={styles.linkColumn}>
-                            <h3 className="font-body text-sm font-bold text-white">Perusahaan</h3>
-                            <Link href="/tentang" className="font-body text-sm text-white/60 transition-colors hover:text-white">Tentang Kami</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Karir</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Brand Assets</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Changelog</Link>
+                            <h3 className="mb-3 font-body text-[10px] font-bold uppercase tracking-[0.25em] text-white/30">Layanan</h3>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Film & Campaign</Link>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Brand Architecture</Link>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Digital Strategy</Link>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">UI/UX Design</Link>
                         </div>
 
-                        {/* Col 3 — Ekosistem */}
+                        {/* Col 3 — Kolaborasi */}
                         <div className={styles.linkColumn}>
-                            <h3 className="font-body text-sm font-bold text-white">Ekosistem</h3>
-                            <Link href="/news" className="font-body text-sm text-white/60 transition-colors hover:text-white">News Platform</Link>
-                            <Link href="/karya" className="font-body text-sm text-white/60 transition-colors hover:text-white">Portofolio</Link>
-                            <Link href="#sambatan" className="font-body text-sm text-white/60 transition-colors hover:text-white">Curhat Area</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Community</Link>
-                        </div>
-
-                        {/* Col 4 — Kolaborasi */}
-                        <div className={styles.linkColumn}>
-                            <h3 className="font-body text-sm font-bold text-white">Kolaborasi</h3>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Start a Project</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Media Partner</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Support Docs</Link>
-                            <Link href="#" className="font-body text-sm text-white/60 transition-colors hover:text-white">Contact</Link>
+                            <h3 className="mb-3 font-body text-[10px] font-bold uppercase tracking-[0.25em] text-white/30">Kolaborasi</h3>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Start a Project</Link>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Media Partner</Link>
+                            <Link href="#" className="font-body text-sm text-white/70 transition-colors hover:text-white">Community</Link>
                         </div>
 
                     </div>
@@ -84,14 +65,13 @@ export default function Footer() {
 
                 {/* ─── Bottom Section: Baseplate ─── */}
                 <div className={styles.baseplate}>
-                    <p className="font-body text-xs text-white/40">
+                    <p className="font-body text-[10px] uppercase tracking-[0.2em] text-white/30">
                         © 2026 sebats, Creative Media Studio. All rights reserved.
                     </p>
 
-                    <div className={`${styles.legalLinks} font-body text-xs text-white/40`}>
+                    <div className={`${styles.legalLinks} font-body text-[10px] uppercase tracking-[0.2em] text-white/30`}>
                         <Link href="#">Privacy Policy</Link>
                         <Link href="#">Terms</Link>
-                        <Link href="#">Code of conduct</Link>
                     </div>
                 </div>
 

@@ -36,13 +36,13 @@ export default function ClientMarquee() {
             </div>
 
             <section className="border-grid-b bg-black py-8 md:py-10">
-
                 <div className="relative overflow-hidden">
                     <Marquee speed={80} pauseOnHover autoFill gradient={false}>
                         {clients.map((name, i) => (
                             <span
                                 key={`c1-${i}`}
-                                className="mx-6 cursor-default whitespace-nowrap font-display text-2xl font-black uppercase md:mx-10 md:text-3xl lg:text-5xl text-white hover:text-primary transition-all duration-300"
+                                /* Ukuran teks diturunkan menjadi text-lg (HP), text-xl (Tablet), text-2xl (Desktop) */
+                                className="mx-5 cursor-default whitespace-nowrap font-display text-lg font-black uppercase md:mx-8 md:text-xl lg:text-2xl text-white hover:text-primary transition-all duration-300"
                             >
                                 {name}
                             </span>

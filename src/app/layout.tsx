@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
-<<<<<<< Updated upstream
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-=======
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
->>>>>>> Stashed changes
 import "./globals.css";
 
 const inter = Inter({
@@ -28,12 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={inter.variable}>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden w-full">
+        
+        {/* Navbar bebas di luar SmoothScroll */}
+        <Navbar />
+
         <SmoothScroll>
-          <Navbar />
           {children}
+          {/* Footer kembali hadir! */}
           <Footer />
         </SmoothScroll>
+
         <FloatingWhatsApp />
       </body>
     </html>

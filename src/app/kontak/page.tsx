@@ -1,14 +1,7 @@
 "use client";
 
-<<<<<<< Updated upstream
-import { useRef, useEffect } from "react";
-import { ArrowRight, Phone, MapPin, ExternalLink } from "lucide-react";
-=======
 import { useRef, useEffect, useState, useCallback } from "react";
 import { ArrowRight, Phone, MapPin, ExternalLink, MessageCircle, Briefcase, Mail, Copy, Check } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
->>>>>>> Stashed changes
 import ClientMarquee from "@/components/ClientMarquee";
 import gsap from "gsap";
 import SplitType from "split-type";
@@ -181,14 +174,7 @@ export default function KontakPage() {
 
     return (
         <div className="grain-overlay bg-black selection:bg-white selection:text-black">
-<<<<<<< Updated upstream
-
             {/* Controlled Asymmetry Layout: 65% Black / 35% White */}
-=======
-            <div className="fixed top-0 left-0 w-full h-20 md:h-24 bg-black z-40" />
-            <div className="relative z-50"><Navbar /></div>
-
->>>>>>> Stashed changes
             <section className="min-h-screen">
                 <div className="grid min-h-screen grid-cols-1 lg:grid-cols-12 relative w-full pt-20 md:pt-24">
 
@@ -202,7 +188,7 @@ export default function KontakPage() {
                                 ref={heroTextRef}
                                 className="font-display font-black uppercase text-white tracking-tighter"
                                 style={{ fontSize: "clamp(3.5rem, 11vw, 11rem)", lineHeight: "0.95" }}>
-                                <br />Let&apos;s <br />Talk.
+                                <br />Let's <br />Talk.
                             </h1>
                         </div>
 
@@ -315,6 +301,6 @@ export default function KontakPage() {
             </section>
 
             <ClientMarquee />
-        </div>
+        </div >
     );
 }

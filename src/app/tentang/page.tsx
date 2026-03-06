@@ -13,7 +13,6 @@ gsap.registerPlugin(ScrollTrigger);
 /* ═══════════════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════════════ */
-
 const timeline = [
     {
         year: "2020",
@@ -97,7 +96,6 @@ const departments = [
 /* ═══════════════════════════════════════════════════
    PAGE COMPONENT
    ═══════════════════════════════════════════════════ */
-
 export default function TentangPage() {
     const pageRef = useRef<HTMLDivElement>(null);
     const deptSectionRef = useRef<HTMLDivElement>(null);
@@ -107,111 +105,68 @@ export default function TentangPage() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.utils.toArray<HTMLElement>(".tl-card").forEach((card) => {
-                gsap.fromTo(
-                    card,
-                    { y: 60, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse",
-                        },
-                    }
-                );
+                gsap.fromTo(card, { y: 60, opacity: 0 }, {
+                    y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+                    scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none reverse" }
+                });
             });
 
             gsap.utils.toArray<HTMLElement>(".team-card").forEach((card, i) => {
-                gsap.fromTo(
-                    card,
-                    { y: 50, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.6,
-                        delay: i * 0.1,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 88%",
-                            toggleActions: "play none none reverse",
-                        },
-                    }
-                );
+                gsap.fromTo(card, { y: 50, opacity: 0 }, {
+                    y: 0, opacity: 1, duration: 0.6, delay: i * 0.1, ease: "power3.out",
+                    scrollTrigger: { trigger: card, start: "top 88%", toggleActions: "play none none reverse" }
+                });
             });
 
             gsap.utils.toArray<HTMLElement>(".dept-row").forEach((row) => {
-                gsap.fromTo(
-                    row,
-                    { x: -30, opacity: 0 },
-                    {
-                        x: 0,
-                        opacity: 1,
-                        duration: 0.6,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: row,
-                            start: "top 90%",
-                            toggleActions: "play none none reverse",
-                        },
-                    }
-                );
+                gsap.fromTo(row, { x: -30, opacity: 0 }, {
+                    x: 0, opacity: 1, duration: 0.6, ease: "power3.out",
+                    scrollTrigger: { trigger: row, start: "top 90%", toggleActions: "play none none reverse" }
+                });
             });
         }, pageRef);
-
         return () => ctx.revert();
     }, []);
 
     /* ── Department hover image position ── */
     const [imgPos, setImgPos] = useState({ x: 0, y: 0 });
-
     const handleDeptMouseMove = useCallback((e: React.MouseEvent) => {
         if (!deptSectionRef.current) return;
         const rect = deptSectionRef.current.getBoundingClientRect();
-        setImgPos({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-        });
+        setImgPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     }, []);
 
     return (
         <div className="grain-overlay min-h-screen bg-black text-white" ref={pageRef}>
 
             {/* ═══════════════════════════════════════════
-                HERO (NUCLEAR FIX)
+                HERO
             ═══════════════════════════════════════════ */}
-            <section className="relative w-full border-b border-white/10 bg-black cretivox-grid">
-                
-                {/* Spacer Anti-Navbar (Memaksa ruang kosong dari atas) */}
-                <div style={{ height: "140px" }} className="w-full sm:h-[180px] md:h-[240px]" aria-hidden="true"></div>
+            <section className="relative w-full bg-black cretivox-grid">
+                {/* Spacer dikurangi agar teks tidak terlalu jatuh */}
+                <div style={{ height: "120px" }} className="w-full" aria-hidden="true"></div>
 
-                <div className="container-main pb-16 md:pb-24 relative z-10">
+                <div className="container-main relative z-10" style={{ paddingBottom: "80px" }}>
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Users className="h-4 w-4" /> The Story So Far
                     </p>
-                    <h1
-                        className="font-display font-black uppercase text-white"
-                        style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}
-                    >
+                    <h1 className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
                         Bukan Cuma<br /><span className="text-primary">Studio.</span>
                     </h1>
-                    <div className="mt-10 h-px w-24 bg-primary" />
-                    <p className="mt-10 max-w-xl font-body text-sm leading-relaxed text-white/60 md:text-base md:leading-loose">
+                    <div className="mt-8 h-px w-24 bg-primary" />
+                    <p className="mt-8 max-w-xl font-body text-sm leading-relaxed text-white/60 md:text-base md:leading-loose">
                         Kami lahir dari keresahan yang sama: <span className="italic text-white">burnout</span>, <span className="italic text-white">hustle culture</span>, dan tekanan buat selalu produktif. Sebats hadir sebagai jawaban — bahwa momen jeda adalah momen paling jujur.
                     </p>
                 </div>
             </section>
 
             {/* ═══════════════════════════════════════════
-                TIMELINE — Narrative Scroll (Sticky Year)
+                TIMELINE
             ═══════════════════════════════════════════ */}
-            <section className="border-b border-white/10 bg-black py-32 md:py-40">
+            <section className="bg-black" style={{ padding: "100px 0" }}>
                 <div className="container-main">
-                    {/* Section Header */}
-                    <div className="mb-20 flex flex-col border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
+                    {/* Margin antar judul dengan konten diseimbangkan (60px) */}
+                    <div style={{ marginBottom: "60px" }} className="flex flex-col md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                                 <Briefcase className="mb-0.5 inline h-3 w-3" /> Journey
@@ -223,16 +178,10 @@ export default function TentangPage() {
                         </p>
                     </div>
 
-                    {/* Timeline Cards */}
                     <div className="space-y-0">
                         {timeline.map((item, i) => (
-                            <div
-                                key={item.year}
-                                className="tl-card grid grid-cols-1 border-b border-white/10 md:grid-cols-12"
-                                style={{ opacity: 0 }}
-                            >
-                                {/* Sticky Year (Left) */}
-                                <div className="flex items-start py-10 md:col-span-4 md:py-16">
+                            <div key={item.year} className="tl-card grid grid-cols-1 md:grid-cols-12" style={{ opacity: 0 }}>
+                                <div className="flex items-start py-8 md:col-span-4 md:py-12">
                                     <div className="sticky top-32">
                                         <span className="font-display font-black text-white/[0.06]" style={{ fontSize: "clamp(4rem, 10vw, 10rem)", lineHeight: 0.85 }}>
                                             {item.year}
@@ -244,31 +193,14 @@ export default function TentangPage() {
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* Content (Right) */}
-                                <div className="flex flex-col gap-6 py-10 md:col-span-8 md:border-l md:border-white/10 md:pl-12 md:py-16">
-                                    {/* Image */}
+                                <div className="flex flex-col gap-6 py-8 md:col-span-8 md:pl-12 md:py-12">
                                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-white/5">
-                                        <Image
-                                            src={item.imageUrl}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover grayscale transition-all duration-700 hover:scale-105 hover:grayscale-0"
-                                            sizes="(max-width: 768px) 100vw, 60vw"
-                                        />
+                                        <Image src={item.imageUrl} alt={item.title} fill className="object-cover grayscale transition-all duration-700 hover:scale-105 hover:grayscale-0" sizes="(max-width: 768px) 100vw, 60vw" />
                                     </div>
-
-                                    {/* Text */}
                                     <div>
-                                        <h3 className="font-display text-2xl font-black uppercase tracking-tight text-white md:text-3xl">
-                                            {item.title}
-                                        </h3>
-                                        <p className="mt-4 max-w-lg font-body text-sm leading-relaxed text-white/50 md:text-base">
-                                            {item.desc}
-                                        </p>
+                                        <h3 className="font-display text-2xl font-black uppercase tracking-tight text-white md:text-3xl">{item.title}</h3>
+                                        <p className="mt-3 max-w-lg font-body text-sm leading-relaxed text-white/50 md:text-base">{item.desc}</p>
                                     </div>
-
-                                    {/* Progress indicator */}
                                     <div className="flex items-center gap-3">
                                         <div className="h-px flex-1 bg-white/10" />
                                         <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/20">
@@ -283,57 +215,27 @@ export default function TentangPage() {
             </section>
 
             {/* ═══════════════════════════════════════════
-                TEAM — Character Persona Cards
+                TEAM
             ═══════════════════════════════════════════ */}
-            <section className="border-b border-white/10 bg-black py-32 md:py-40">
+            <section className="bg-black" style={{ padding: "100px 0" }}>
                 <div className="container-main">
-                    <div className="mb-20">
+                    <div style={{ marginBottom: "60px" }}>
                         <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Our People</p>
                         <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.85" }}>
                             Otak di Balik<br />Layar.
                         </h2>
                     </div>
-
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                         {team.map((person) => (
-                            <motion.div
-                                key={person.name}
-                                className="team-card group relative aspect-[3/4] cursor-pointer overflow-hidden bg-white/5"
-                                style={{ opacity: 0, perspective: 800 }}
-                                whileHover={{
-                                    scale: 1.03,
-                                    rotateX: -2,
-                                    rotateY: 3,
-                                    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-                                }}
-                            >
-                                {/* Portrait */}
-                                <Image
-                                    src={person.imageUrl}
-                                    alt={person.name}
-                                    fill
-                                    className="object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                                />
-
-                                {/* Badge — top left */}
+                            <motion.div key={person.name} className="team-card group relative aspect-[3/4] cursor-pointer overflow-hidden bg-white/5" style={{ opacity: 0, perspective: 800 }} whileHover={{ scale: 1.03, rotateX: -2, rotateY: 3, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}>
+                                <Image src={person.imageUrl} alt={person.name} fill className="object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                                 <div className="absolute left-3 top-3 z-10 border border-primary/40 bg-black/70 px-3 py-1.5 backdrop-blur-sm">
-                                    <span className="font-body text-[9px] font-black uppercase tracking-[0.25em] text-primary">
-                                        {person.badge}
-                                    </span>
+                                    <span className="font-body text-[9px] font-black uppercase tracking-[0.25em] text-primary">{person.badge}</span>
                                 </div>
-
-                                {/* Gradient overlay + info — bottom */}
                                 <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-16">
-                                    <h3 className="font-display text-xl font-black uppercase tracking-tight text-white md:text-2xl">
-                                        {person.name}
-                                    </h3>
-                                    <p className="mt-1 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
-                                        {person.role}
-                                    </p>
+                                    <h3 className="font-display text-xl font-black uppercase tracking-tight text-white md:text-2xl">{person.name}</h3>
+                                    <p className="mt-1 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">{person.role}</p>
                                 </div>
-
-                                {/* Hover border highlight */}
                                 <div className="pointer-events-none absolute inset-0 border-2 border-transparent transition-colors duration-500 group-hover:border-primary/30" />
                             </motion.div>
                         ))}
@@ -342,82 +244,35 @@ export default function TentangPage() {
             </section>
 
             {/* ═══════════════════════════════════════════
-                DEPARTMENTS — Interactive Magazine Index
+                DEPARTMENTS
             ═══════════════════════════════════════════ */}
-            <section className="border-b border-white/10 bg-black py-32 md:py-40">
+            <section className="bg-black" style={{ padding: "100px 0" }}>
                 <div className="container-main">
-                    <div className="mb-20 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+                    <div style={{ marginBottom: "60px" }} className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Structure</p>
-                            <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.85" }}>
-                                Divisi &amp; Tim.
-                            </h2>
+                            <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.85" }}>Divisi &amp; Tim.</h2>
                         </div>
-                        <p className="max-w-xs font-body text-xs uppercase tracking-[0.2em] text-white/30">
-                            Kolaborasi lintas disiplin untuk hasil maksimal.
-                        </p>
+                        <p className="max-w-xs font-body text-xs uppercase tracking-[0.2em] text-white/30">Kolaborasi lintas disiplin untuk hasil maksimal.</p>
                     </div>
 
-                    <div
-                        ref={deptSectionRef}
-                        className="relative border-t border-white/10"
-                        onMouseMove={handleDeptMouseMove}
-                        onMouseLeave={() => setActiveDept(null)}
-                    >
-                        {/* Floating Image Reveal */}
-                        <div
-                            className="pointer-events-none fixed z-50 h-[280px] w-[380px] overflow-hidden transition-opacity duration-500"
-                            style={{
-                                left: imgPos.x,
-                                top: imgPos.y,
-                                opacity: activeDept !== null ? 1 : 0,
-                                transform: "translate(-50%, -50%)",
-                                position: "absolute",
-                            }}
-                        >
+                    <div ref={deptSectionRef} className="relative" onMouseMove={handleDeptMouseMove} onMouseLeave={() => setActiveDept(null)}>
+                        <div className="pointer-events-none fixed z-50 h-[280px] w-[380px] overflow-hidden transition-opacity duration-500" style={{ left: imgPos.x, top: imgPos.y, opacity: activeDept !== null ? 1 : 0, transform: "translate(-50%, -50%)", position: "absolute" }}>
                             {departments.map((dept, i) => (
-                                <Image
-                                    key={dept.num}
-                                    src={dept.imageUrl}
-                                    alt={dept.name}
-                                    fill
-                                    className={`object-cover transition-opacity duration-500 ${activeDept === i ? "opacity-100" : "opacity-0"}`}
-                                    sizes="380px"
-                                />
+                                <Image key={dept.num} src={dept.imageUrl} alt={dept.name} fill className={`object-cover transition-opacity duration-500 ${activeDept === i ? "opacity-100" : "opacity-0"}`} sizes="380px" />
                             ))}
                         </div>
 
-                        {/* Rows */}
                         {departments.map((dept, i) => (
-                            <div
-                                key={dept.num}
-                                className="dept-row group relative flex cursor-pointer items-center justify-between border-b border-white/10 px-2 py-8 transition-all duration-500 md:py-12"
-                                style={{ opacity: 0 }}
-                                onMouseEnter={() => setActiveDept(i)}
-                            >
-                                {/* Dim non-active rows */}
-                                <div
-                                    className="absolute inset-0 bg-black transition-opacity duration-500"
-                                    style={{ opacity: activeDept !== null && activeDept !== i ? 0.6 : 0 }}
-                                />
-
+                            <div key={dept.num} className="dept-row group relative flex cursor-pointer items-center justify-between border-b border-white/5 px-2 py-8 transition-all duration-500 md:py-10" style={{ opacity: 0 }} onMouseEnter={() => setActiveDept(i)}>
+                                <div className="absolute inset-0 bg-black transition-opacity duration-500" style={{ opacity: activeDept !== null && activeDept !== i ? 0.6 : 0 }} />
                                 <div className="relative z-10 flex items-center gap-6 md:gap-10">
-                                    <span
-                                        className="font-display font-black text-white/[0.06] transition-all duration-500 group-hover:text-primary/30"
-                                        style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
-                                    >
-                                        {dept.num}
-                                    </span>
-                                    <h3 className="font-display text-xl font-black uppercase tracking-tight text-white transition-all duration-500 group-hover:text-primary md:text-3xl lg:text-5xl">
-                                        {dept.name}
-                                    </h3>
+                                    <span className="font-display font-black text-white/[0.06] transition-all duration-500 group-hover:text-primary/30" style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}>{dept.num}</span>
+                                    <h3 className="font-display text-xl font-black uppercase tracking-tight text-white transition-all duration-500 group-hover:text-primary md:text-3xl lg:text-5xl">{dept.name}</h3>
                                 </div>
-
                                 <div className="relative z-10 hidden items-center gap-8 md:flex">
                                     <div className="h-px w-24 bg-white/5 transition-colors duration-500 group-hover:bg-primary/20 lg:w-40" />
-                                    <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/20 transition-colors duration-500 group-hover:text-white/60">
-                                        {dept.count}
-                                    </span>
+                                    <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/20 transition-colors duration-500 group-hover:text-white/60">{dept.count}</span>
                                 </div>
                             </div>
                         ))}
