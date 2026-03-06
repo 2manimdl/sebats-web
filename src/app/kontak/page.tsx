@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { ArrowRight, Phone, MapPin, ExternalLink, MessageCircle, Briefcase, Mail, Copy, Check } from "lucide-react";
+import Navbar from "@/components/Navbar";
 import ClientMarquee from "@/components/ClientMarquee";
 import gsap from "gsap";
 import SplitType from "split-type";
@@ -126,20 +127,24 @@ export default function KontakPage() {
     const labelRef = useRef<HTMLParagraphElement>(null);
     const descRef = useRef<HTMLParagraphElement>(null);
     const mapRef = useRef<HTMLDivElement>(null);
+    const tlRef = useRef<gsap.core.Timeline | null>(null);
+    const splitHeroRef = useRef<SplitType | null>(null);
+    const splitDescRef = useRef<SplitType | null>(null);
 
     useEffect(() => {
         if (!heroTextRef.current) return;
 
         const timer = setTimeout(() => {
-            const splitHero = new SplitType(heroTextRef.current!, { types: "chars" });
-            const splitDesc = new SplitType(descRef.current!, { types: "chars" });
+            splitHeroRef.current = new SplitType(heroTextRef.current!, { types: "chars" });
+            splitDescRef.current = new SplitType(descRef.current!, { types: "chars" });
 
-            const heroChars = splitHero.chars || [];
-            const descChars = splitDesc.chars || [];
+            const heroChars = splitHeroRef.current.chars || [];
+            const descChars = splitDescRef.current.chars || [];
 
             gsap.set([heroChars, descChars], { visibility: "hidden", opacity: 0 });
 
-            const tl = gsap.timeline({ repeat: -1 });
+            tlRef.current = gsap.timeline({ repeat: -1 });
+            const tl = tlRef.current;
 
             if (heroChars.length > 0) {
                 tl.to(heroChars, { visibility: "visible", opacity: 1, stagger: 0.08, duration: 0.01, ease: "none" });
@@ -152,29 +157,34 @@ export default function KontakPage() {
             if (descChars.length > 0) {
                 tl.to([...descChars].reverse(), {
                     opacity: 0, stagger: 0.01, duration: 0.01, ease: "none",
-                    onComplete: () => gsap.set(descChars, { visibility: "hidden" }),
+                    onComplete: () => { gsap.set(descChars, { visibility: "hidden" }); },
                 });
             }
             if (heroChars.length > 0) {
                 tl.to([...heroChars].reverse(), {
                     opacity: 0, stagger: 0.03, duration: 0.01, ease: "none",
-                    onComplete: () => gsap.set(heroChars, { visibility: "hidden" }),
+                    onComplete: () => { gsap.set(heroChars, { visibility: "hidden" }); },
                 });
             }
             tl.to({}, { duration: 1 });
 
             gsap.fromTo(labelRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.2 });
             gsap.fromTo(mapRef.current, { scale: 0.95, opacity: 0, filter: "blur(5px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1.5, ease: "power4.out", delay: 0.5 });
-
-            return () => { tl.kill(); splitHero.revert(); splitDesc.revert(); };
         }, 100);
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer);
+            tlRef.current?.kill();
+            splitHeroRef.current?.revert();
+            splitDescRef.current?.revert();
+        };
     }, []);
 
     return (
         <div className="grain-overlay bg-black selection:bg-white selection:text-black">
-            {/* Controlled Asymmetry Layout: 65% Black / 35% White */}
+            <div className="fixed top-0 left-0 w-full h-20 md:h-24 bg-black z-40" />
+            <div className="relative z-50"><Navbar /></div>
+
             <section className="min-h-screen">
                 <div className="grid min-h-screen grid-cols-1 lg:grid-cols-12 relative w-full pt-20 md:pt-24">
 

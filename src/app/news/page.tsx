@@ -217,7 +217,7 @@ export default function NewsPage() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-white text-black">
+        <div className="grain-overlay bg-white">
 
             {/* ── HERO ──────────────────────────────────────────── */}
             <section ref={heroSectionRef} className="relative w-full bg-white">
@@ -340,9 +340,9 @@ export default function NewsPage() {
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`font-body text-[9px] font-black uppercase tracking-[0.25em] px-5 py-3 transition-all duration-300 ${activeCategory === cat
-                                        ? "bg-black text-white"
-                                        : "bg-transparent text-black/50 border border-black/10 hover:border-black/30 hover:text-black"
+                                    className={`font-body text-[9px] font-black uppercase tracking-[0.25em] px-4 py-2 border transition-all duration-200 ${activeCategory === cat
+                                        ? "bg-black text-white border-black"
+                                        : "bg-white text-black/40 border-black/10 hover:border-black/30 hover:text-black/70"
                                         }`}
                                 >
                                     {cat}
