@@ -146,7 +146,7 @@ export default function TentangPage() {
                 {/* Spacer dikurangi agar teks tidak terlalu jatuh */}
                 <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
 
-                <div className="container-main relative z-10" style={{ paddingBottom: "100px" }}>
+                <div className="container-main relative z-10" style={{ paddingBottom: "clamp(60px, 8vw, 100px)" }}>
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Users className="h-4 w-4" /> The Story So Far
                     </p>
@@ -163,7 +163,7 @@ export default function TentangPage() {
             {/* ═══════════════════════════════════════════
                 TIMELINE
             ═══════════════════════════════════════════ */}
-            <section className="bg-black" style={{ padding: "120px 0" }}>
+            <section className="bg-black" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     {/* Margin antar judul dengan konten diseimbangkan (60px) */}
                     <div style={{ marginBottom: "60px" }} className="flex flex-col md:flex-row md:items-end md:justify-between">
@@ -217,7 +217,7 @@ export default function TentangPage() {
             {/* ═══════════════════════════════════════════
                 TEAM
             ═══════════════════════════════════════════ */}
-            <section className="bg-black" style={{ padding: "120px 0" }}>
+            <section className="bg-black" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     <div style={{ marginBottom: "60px" }}>
                         <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Our People</p>
@@ -246,7 +246,7 @@ export default function TentangPage() {
             {/* ═══════════════════════════════════════════
                 DEPARTMENTS
             ═══════════════════════════════════════════ */}
-            <section className="bg-black" style={{ padding: "120px 0" }}>
+            <section className="bg-black" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     <div style={{ marginBottom: "60px" }} className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
                         <div>

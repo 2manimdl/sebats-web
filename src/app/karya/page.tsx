@@ -114,7 +114,7 @@ export default function KaryaPage() {
     }, []);
 
     return (
-        <div className="grain-overlay min-h-screen bg-black text-white">
+        <div className="grain-overlay bg-black text-white">
 
             {/* ═══════════════════════════════════════════
                 HERO SECTION
@@ -122,7 +122,7 @@ export default function KaryaPage() {
             <section ref={heroRef} className="relative w-full bg-black">
                 <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
 
-                <div className="container-main relative z-10" style={{ paddingBottom: "100px" }}>
+                <div className="container-main relative z-10" style={{ paddingBottom: "clamp(60px, 8vw, 100px)" }}>
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <TrendingUp className="h-4 w-4" /> Arsip Digital
                     </p>
@@ -139,7 +139,7 @@ export default function KaryaPage() {
             {/* ═══════════════════════════════════════════
                 CASE STUDIES / PORTFOLIO (DARK MODE GRID)
             ═══════════════════════════════════════════ */}
-            <section className="bg-black border-t border-white/5" style={{ padding: "120px 0" }}>
+            <section className="bg-black border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
 
                     <div style={{ marginBottom: "80px" }} className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -209,7 +209,7 @@ export default function KaryaPage() {
             {/* ═══════════════════════════════════════════
                 LAYANAN KAMI SECTION (DARK MODE)
             ═══════════════════════════════════════════ */}
-            <section ref={servicesRef} className="bg-white/[0.02] border-t border-white/5" style={{ padding: "120px 0" }}>
+            <section ref={servicesRef} className="bg-white/[0.02] border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
 
                     <div id="service-header" style={{ marginBottom: "80px" }} className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">

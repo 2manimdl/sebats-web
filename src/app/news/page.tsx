@@ -217,14 +217,14 @@ export default function NewsPage() {
     }, []);
 
     return (
-        <div className="grain-overlay min-h-screen bg-black text-white">
+        <div className="grain-overlay bg-black text-white">
 
             {/* ── HERO ──────────────────────────────────────────── */}
             <section ref={heroSectionRef} className="relative w-full bg-black">
                 {/* Spacer Absolut untuk Navbar */}
                 <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
 
-                <div className="container-main w-full relative z-10" style={{ paddingBottom: "100px" }}>
+                <div className="container-main w-full relative z-10" style={{ paddingBottom: "clamp(60px, 8vw, 100px)" }}>
                     <p ref={editorialLabelRef} className="mb-6 flex items-center gap-3 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Newspaper className="h-4 w-4" /> Editorial Journal
                     </p>
@@ -254,7 +254,7 @@ export default function NewsPage() {
             </section>
 
             {/* ── FEATURED ARTICLE ──────────────────────────────── */}
-            <section ref={featuredSectionRef} className="bg-black border-t border-white/5" style={{ padding: "120px 0" }}>
+            <section ref={featuredSectionRef} className="bg-black border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     <div className="mb-10 flex items-center gap-3">
                         <span className="font-body text-[9px] font-bold uppercase tracking-[0.4em] text-white/40">Pilihan Editor</span>
@@ -292,7 +292,7 @@ export default function NewsPage() {
             </section>
 
             {/* ── TRENDING NOW ──────────────────────────────────── */}
-            <section className="bg-white/[0.02] border-t border-white/5" style={{ padding: "120px 0" }}>
+            <section className="bg-white/[0.02] border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     <div className="flex items-center gap-3 mb-10">
                         <TrendingUp className="h-4 w-4 text-primary" />
@@ -318,7 +318,7 @@ export default function NewsPage() {
             </section>
 
             {/* ── ARTICLE GRID ──────────────────────────────────── */}
-            <section className="bg-black border-t border-white/5" style={{ padding: "120px 0" }}>
+            <section className="bg-black border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     {/* Header + Category Filter */}
                     <div className="mb-12 flex flex-col gap-8">

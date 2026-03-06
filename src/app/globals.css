@@ -90,6 +90,13 @@ body {
   }
 }
 
+@media (min-width: 1024px) {
+  .container-main {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
 /* ─── GSAP Marquee ─── */
 @keyframes gsap-marquee {
   0% {

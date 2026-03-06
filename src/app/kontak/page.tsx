@@ -142,9 +142,9 @@ export default function KontakPage() {
         <div className="grain-overlay bg-black selection:bg-primary selection:text-black text-white overflow-hidden">
 
             {/* Spacer for Global Navbar */}
-            <div style={{ height: "160px" }} className="w-full" aria-hidden="true"></div>
+            <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
 
-            <section className="container-main" style={{ paddingBottom: "160px" }}>
+            <section className="container-main" style={{ paddingBottom: "clamp(80px, 12vw, 160px)" }}>
 
                 {/* ─── 1. MASSIVE HEADER ─── */}
                 <div ref={headerRef} className="w-full mb-16 md:mb-24">
