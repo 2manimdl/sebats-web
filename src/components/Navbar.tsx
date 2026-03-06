@@ -32,7 +32,7 @@ export default function Navbar() {
             <header className="fixed top-6 left-6 right-6 md:top-10 md:left-10 md:right-10 lg:top-12 lg:left-14 lg:right-14 z-[100] pointer-events-none mix-blend-difference text-white flex items-start justify-between">
                 {/* Brand Logo */}
                 <Link href="/" className="pointer-events-auto font-display text-3xl md:text-4xl font-black tracking-wide hover:opacity-70 transition-opacity">
-                    sebats,
+                    sebat's
                 </Link>
 
                 {/* Hamburger Button (Icon Only) */}
@@ -60,7 +60,7 @@ export default function Navbar() {
                         {/* Overlay Header (Matches Floating Header Spacing) */}
                         <div className="absolute top-6 left-6 right-6 md:top-10 md:left-10 md:right-10 lg:top-12 lg:left-14 lg:right-14 flex items-start justify-between">
                             <Link href="/" onClick={() => setIsOpen(false)} className="font-display text-3xl md:text-4xl font-black tracking-wide hover:text-primary transition-colors">
-                                sebats,
+                                sebat's
                             </Link>
 
                             {/* Close Button (Icon Only) */}

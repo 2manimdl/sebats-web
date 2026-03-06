@@ -132,19 +132,19 @@ function useCounter(target: number, duration: number = 1.5) {
     return { count, ref };
 }
 
-// ─── Category Badge (Light Mode Adjusted) ──────────────────────────────────────
+// ─── Category Badge (Dark Mode) ────────────────────────────────────────────────
 const categoryColors: Record<string, string> = {
-    Opini: "bg-purple-100 text-purple-700 border-purple-200",
-    Branding: "bg-blue-100 text-blue-700 border-blue-200",
-    "Case Study": "bg-emerald-100 text-emerald-700 border-emerald-200",
-    Tutorial: "bg-orange-100 text-orange-700 border-orange-200",
-    Lifestyle: "bg-pink-100 text-pink-700 border-pink-200",
-    Burnout: "bg-red-100 text-red-700 border-red-200",
+    Opini: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    Branding: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    "Case Study": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    Tutorial: "bg-orange-500/10 text-orange-400 border-orange-500/20",
+    Lifestyle: "bg-pink-500/10 text-pink-400 border-pink-500/20",
+    Burnout: "bg-red-500/10 text-red-400 border-red-500/20",
 };
 
 function CategoryBadge({ cat }: { cat: string }) {
     return (
-        <span className={`inline-block font-body text-[8px] font-black uppercase tracking-[0.25em] px-2 py-0.5 border ${categoryColors[cat] ?? "bg-gray-100 text-gray-700 border-gray-200"}`}>
+        <span className={`inline-block font-body text-[8px] font-black uppercase tracking-[0.25em] px-2 py-0.5 border ${categoryColors[cat] ?? "bg-white/5 text-white/50 border-white/10"}`}>
             {cat}
         </span>
     );
@@ -217,41 +217,36 @@ export default function NewsPage() {
     }, []);
 
     return (
-        <div className="grain-overlay bg-white">
+        <div className="grain-overlay bg-black text-white">
 
             {/* ── HERO ──────────────────────────────────────────── */}
-            <section ref={heroSectionRef} className="relative w-full bg-white">
+            <section ref={heroSectionRef} className="relative w-full bg-black">
                 {/* Spacer Absolut untuk Navbar */}
                 <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
 
-                <div className="container-main w-full relative z-10" style={{ paddingBottom: "120px" }}>
-                    <p ref={editorialLabelRef} className="mb-6 flex items-center gap-3 font-body text-[10px] font-bold uppercase tracking-[0.5em] text-primary">
+                <div className="container-main w-full relative z-10" style={{ paddingBottom: "clamp(60px, 8vw, 100px)" }}>
+                    <p ref={editorialLabelRef} className="mb-6 flex items-center gap-3 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Newspaper className="h-4 w-4" /> Editorial Journal
                     </p>
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
-                        <h1 ref={heroRef} className="font-display font-black uppercase text-black text-5xl md:text-7xl lg:text-8xl" style={{ lineHeight: "0.88", letterSpacing: "-0.03em" }}>
-                            News &<br />
-                            <span className="relative inline-block">
-                                <span className="relative z-10">Stories.</span>
-                                {/* Aksen garis kuning di bawah teks */}
-                                <span className="absolute bottom-1 left-0 w-full h-4 bg-primary/40 -z-10" />
-                            </span>
+                        <h1 ref={heroRef} className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
+                            News &<br /><span className="text-primary">Stories.</span>
                         </h1>
                         {/* Hero meta stats */}
                         <div className="flex items-start gap-8 lg:pb-2">
                             <div>
-                                <p className="font-display text-2xl font-black text-black tracking-tighter">{allArticles.length}+</p>
-                                <p className="font-body text-[8px] uppercase tracking-[0.3em] text-black/40 mt-0.5">Artikel</p>
+                                <p className="font-display text-2xl font-black text-white tracking-tighter">{allArticles.length}+</p>
+                                <p className="font-body text-[8px] uppercase tracking-[0.3em] text-white/40 mt-0.5">Artikel</p>
                             </div>
                             <div>
-                                <p className="font-display text-2xl font-black text-black tracking-tighter">{CATEGORIES.length - 1}</p>
-                                <p className="font-body text-[8px] uppercase tracking-[0.3em] text-black/40 mt-0.5">Kategori</p>
+                                <p className="font-display text-2xl font-black text-white tracking-tighter">{CATEGORIES.length - 1}</p>
+                                <p className="font-body text-[8px] uppercase tracking-[0.3em] text-white/40 mt-0.5">Kategori</p>
                             </div>
                             <div>
-                                <p className="font-display text-2xl font-black text-black tracking-tighter flex items-center gap-2">
+                                <p className="font-display text-2xl font-black text-white tracking-tighter flex items-center gap-2">
                                     <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" /> Live
                                 </p>
-                                <p className="font-body text-[8px] uppercase tracking-[0.3em] text-black/40 mt-0.5">Editorial</p>
+                                <p className="font-body text-[8px] uppercase tracking-[0.3em] text-white/40 mt-0.5">Editorial</p>
                             </div>
                         </div>
                     </div>
@@ -259,36 +254,36 @@ export default function NewsPage() {
             </section>
 
             {/* ── FEATURED ARTICLE ──────────────────────────────── */}
-            <section ref={featuredSectionRef} className="bg-white" style={{ padding: "100px 0" }}>
+            <section ref={featuredSectionRef} className="bg-black border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     <div className="mb-10 flex items-center gap-3">
-                        <span className="font-body text-[9px] font-bold uppercase tracking-[0.4em] text-black/40">Pilihan Editor</span>
-                        <span className="flex-1 h-px bg-black/10" />
+                        <span className="font-body text-[9px] font-bold uppercase tracking-[0.4em] text-white/40">Pilihan Editor</span>
+                        <span className="flex-1 h-px bg-white/10" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-10 lg:gap-16 items-center">
-                        <div ref={featuredImgRef} className="relative aspect-[4/3] lg:aspect-[4/5] w-full overflow-hidden bg-black/5 shrink-0 group cursor-pointer">
+                        <div ref={featuredImgRef} className="relative aspect-[4/3] lg:aspect-[4/5] w-full overflow-hidden bg-white/5 shrink-0 group cursor-pointer">
                             <img src={featuredArticle.imageUrl} alt={featuredArticle.title} className="absolute inset-0 h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                         </div>
                         <div ref={featuredTextRef} className="flex flex-col justify-center">
                             <div>
                                 <div className="mb-6 flex flex-wrap items-center gap-4">
                                     <CategoryBadge cat={featuredArticle.category} />
-                                    <span className="font-body text-[9px] font-bold uppercase tracking-[0.2em] text-black/60 flex items-center gap-1.5">
+                                    <span className="font-body text-[9px] font-bold uppercase tracking-[0.2em] text-white/60 flex items-center gap-1.5">
                                         <User size={10} /> {featuredArticle.author}
                                     </span>
-                                    <span className="font-body text-[9px] text-black/40 tracking-wider">{featuredArticle.date}</span>
-                                    <span className="flex items-center gap-1 text-black/40 font-body text-[9px] ml-auto">
+                                    <span className="font-body text-[9px] text-white/40 tracking-wider">{featuredArticle.date}</span>
+                                    <span className="flex items-center gap-1 text-white/40 font-body text-[9px] ml-auto">
                                         <Clock size={10} /> {featuredArticle.readTime} read
                                     </span>
                                 </div>
-                                <h2 className="font-display text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight mb-6 text-black group-hover:text-primary transition-colors cursor-pointer">
+                                <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight leading-tight mb-6 text-white group-hover:text-primary transition-colors cursor-pointer">
                                     {featuredArticle.title}
                                 </h2>
-                                <p className="font-body text-sm md:text-base text-black/60 mb-10 leading-relaxed max-w-xl">
+                                <p className="font-body text-sm md:text-base text-white/50 mb-10 leading-relaxed max-w-xl">
                                     {featuredArticle.excerpt}
                                 </p>
                             </div>
-                            <a href="#" className="group inline-flex items-center gap-3 font-display text-[10px] font-black uppercase tracking-[0.3em] text-black pb-1 border-b border-black/20 hover:border-black hover:text-primary transition-all self-start">
+                            <a href="#" className="group inline-flex items-center gap-3 font-display text-[10px] font-black uppercase tracking-[0.3em] text-white pb-1 border-b border-white/20 hover:border-white hover:text-primary transition-all self-start">
                                 Baca Selengkapnya <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                             </a>
                         </div>
@@ -297,26 +292,25 @@ export default function NewsPage() {
             </section>
 
             {/* ── TRENDING NOW ──────────────────────────────────── */}
-            {/* Bagian ini menggunakan background off-white (#f8f8f8) untuk memberikan kedalaman layout */}
-            <section className="bg-[#f8f8f8] border-y border-black/5" style={{ padding: "100px 0" }}>
+            <section className="bg-white/[0.02] border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     <div className="flex items-center gap-3 mb-10">
                         <TrendingUp className="h-4 w-4 text-primary" />
-                        <span className="font-body text-[9px] font-bold uppercase tracking-[0.45em] text-black">Trending Sekarang</span>
-                        <span className="flex-1 h-px bg-black/10" />
+                        <span className="font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Trending Sekarang</span>
+                        <span className="flex-1 h-px bg-white/10" />
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-black/10 border-y border-black/10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-white/10 border-t border-white/5">
                         {trendingArticles.map((t, i) => (
                             <a key={i} href="#"
-                                className="group flex flex-col gap-4 px-0 sm:px-8 py-8 hover:bg-white transition-colors duration-300 cursor-pointer">
+                                className="group flex flex-col gap-4 px-0 sm:px-8 py-8 hover:bg-white/5 transition-colors duration-300 cursor-pointer">
                                 <div className="flex items-center justify-between">
-                                    <span className="font-display text-4xl font-black text-black/10 group-hover:text-primary transition-colors">0{i + 1}</span>
+                                    <span className="font-display text-4xl font-black text-white/[0.06] group-hover:text-primary/30 transition-colors">0{i + 1}</span>
                                     <CategoryBadge cat={t.category} />
                                 </div>
-                                <p className="font-display text-sm font-black uppercase tracking-tight text-black/80 group-hover:text-black transition-colors leading-relaxed line-clamp-3 mt-2">
+                                <p className="font-display text-sm font-black uppercase tracking-tight text-white/60 group-hover:text-white transition-colors leading-relaxed line-clamp-3 mt-2">
                                     {t.title}
                                 </p>
-                                <span className="font-body text-[9px] uppercase tracking-[0.3em] text-black/40 mt-auto pt-4">{t.timeAgo} lalu</span>
+                                <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/30 mt-auto pt-4">{t.timeAgo} lalu</span>
                             </a>
                         ))}
                     </div>
@@ -324,15 +318,15 @@ export default function NewsPage() {
             </section>
 
             {/* ── ARTICLE GRID ──────────────────────────────────── */}
-            <section className="bg-white" style={{ padding: "100px 0" }}>
+            <section className="bg-black border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     {/* Header + Category Filter */}
                     <div className="mb-12 flex flex-col gap-8">
-                        <div className="flex items-center gap-4 border-b border-black/10 pb-6">
-                            <span className="font-display text-2xl font-black uppercase tracking-tight text-black">Semua Artikel</span>
+                        <div className="flex items-center gap-4 border-b border-white/10 pb-6">
+                            <span className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white">Semua Artikel</span>
                             <span className="flex-1" />
-                            <Filter className="h-4 w-4 text-black/30" />
-                            <span className="font-body text-[10px] uppercase tracking-[0.35em] text-black/40 hidden md:block">Filter Topik</span>
+                            <Filter className="h-4 w-4 text-white/30" />
+                            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary hidden md:block">Filter Topik</span>
                         </div>
                         {/* Category filter tabs */}
                         <div className="flex flex-wrap gap-3">
@@ -340,9 +334,9 @@ export default function NewsPage() {
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`font-body text-[9px] font-black uppercase tracking-[0.25em] px-4 py-2 border transition-all duration-200 ${activeCategory === cat
-                                        ? "bg-black text-white border-black"
-                                        : "bg-white text-black/40 border-black/10 hover:border-black/30 hover:text-black/70"
+                                    className={`font-body text-[9px] font-black uppercase tracking-[0.25em] px-5 py-3 transition-all duration-300 ${activeCategory === cat
+                                        ? "bg-white text-black"
+                                        : "bg-transparent text-white/50 border border-white/10 hover:border-white/30 hover:text-white"
                                         }`}
                                 >
                                     {cat}
@@ -368,28 +362,28 @@ export default function NewsPage() {
                                     className="group cursor-pointer flex flex-col"
                                 >
                                     {/* Image */}
-                                    <div className="aspect-[3/2] overflow-hidden bg-black/5 mb-6">
+                                    <div className="aspect-[3/2] overflow-hidden bg-white/5 mb-6">
                                         <img src={article.imageUrl} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" alt={article.title} />
                                     </div>
                                     {/* Meta top */}
                                     <div className="flex items-center gap-3 mb-4 flex-wrap">
                                         <CategoryBadge cat={article.category} />
-                                        <span className="font-body text-[9px] text-black/40 tracking-widest">{article.date}</span>
-                                        <span className="flex items-center gap-1.5 text-black/40 font-body text-[9px] ml-auto">
+                                        <span className="font-body text-[9px] text-white/40 tracking-widest">{article.date}</span>
+                                        <span className="flex items-center gap-1.5 text-white/40 font-body text-[9px] ml-auto">
                                             <Clock size={10} /> {article.readTime}
                                         </span>
                                     </div>
                                     {/* Title */}
-                                    <h3 className="font-display text-xl font-black uppercase leading-tight text-black group-hover:text-primary transition-colors duration-300 mb-3">
+                                    <h3 className="font-display text-xl font-black uppercase leading-tight text-white group-hover:text-primary transition-colors duration-300 mb-3">
                                         {article.title}
                                     </h3>
                                     {/* Excerpt */}
-                                    <p className="text-sm text-black/60 line-clamp-2 leading-relaxed mb-6 flex-1">{article.excerpt}</p>
+                                    <p className="font-body text-sm text-white/50 line-clamp-2 leading-relaxed mb-6 flex-1">{article.excerpt}</p>
                                     {/* Bottom: author + arrow */}
-                                    <div className="flex items-center gap-3 pt-5 border-t border-black/10 mt-auto">
-                                        <User size={10} className="text-black/30 shrink-0" />
-                                        <span className="font-body text-[9px] uppercase tracking-widest text-black/50 font-bold">{article.author}</span>
-                                        <ArrowRight size={14} className="ml-auto text-black/20 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                                    <div className="flex items-center gap-3 pt-5 border-t border-white/5 mt-auto">
+                                        <User size={10} className="text-white/30 shrink-0" />
+                                        <span className="font-body text-[9px] uppercase tracking-widest text-white/40 font-bold">{article.author}</span>
+                                        <ArrowRight size={14} className="ml-auto text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all" />
                                     </div>
                                 </motion.article>
                             ))}
@@ -398,7 +392,7 @@ export default function NewsPage() {
                         {/* Empty state when filter returns nothing */}
                         {filteredArticles.length === 0 && (
                             <div className="col-span-full py-24 text-center">
-                                <p className="font-body text-sm text-black/30 uppercase tracking-widest">Belum ada artikel di kategori ini</p>
+                                <p className="font-body text-sm text-white/30 uppercase tracking-widest">Belum ada artikel di kategori ini</p>
                             </div>
                         )}
                     </div>
@@ -408,7 +402,7 @@ export default function NewsPage() {
                         <div className="mt-20 flex justify-center">
                             <button
                                 onClick={() => setVisibleCount(v => v + 3)}
-                                className="group inline-flex items-center gap-3 font-display text-[10px] font-black uppercase tracking-[0.3em] text-black border border-black/20 px-8 py-4 hover:bg-black hover:text-white transition-all duration-300"
+                                className="group inline-flex items-center gap-3 font-display text-[10px] font-black uppercase tracking-[0.3em] text-white border border-white/20 px-8 py-4 hover:bg-white hover:text-black transition-all duration-300"
                             >
                                 <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
                                 Muat Lebih Banyak
@@ -417,15 +411,15 @@ export default function NewsPage() {
                         </div>
                     )}
                     {!hasMore && filteredArticles.length > 0 && (
-                        <p className="mt-20 text-center font-body text-[9px] uppercase tracking-[0.4em] text-black/30">
+                        <p className="mt-20 text-center font-body text-[9px] uppercase tracking-[0.4em] text-white/30">
                             ─── Semua artikel telah ditampilkan ───
                         </p>
                     )}
                 </div>
             </section>
 
-            {/* ── CTA (Tetap Hitam untuk jembatan ke Footer) ──────── */}
-            <section className="bg-black text-white border-t border-white/10 overflow-hidden">
+            {/* ── CTA ──────────────────────────────────────────── */}
+            <section className="bg-black text-white border-t border-white/5 overflow-hidden">
                 <div className="container-main">
                     <div className="flex items-center justify-between py-5 border-b border-white/10">
                         <span className="font-body text-[9px] font-bold uppercase tracking-[0.5em] text-primary flex items-center gap-2">
@@ -473,9 +467,7 @@ export default function NewsPage() {
                 </div>
             </section>
 
-            <div className="bg-black text-white">
-                <ClientMarquee />
-            </div>
+            <ClientMarquee />
         </div>
     );
 }
