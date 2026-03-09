@@ -1,6 +1,11 @@
 import Link from "next/link";
-import { Instagram, Linkedin, Twitter, Youtube, Mail } from "lucide-react";
+import Image from "next/image";
 import styles from "./Footer.module.css";
+import youtubeIcon from "../assets/youtube.svg";
+import instagramIcon from "../assets/Instagram_logo_2016.svg";
+import linkedinIcon from "../assets/LinkedIn_icon.svg";
+import twitterIcon from "../assets/twitter-svgrepo-com.svg";
+import emailIcon from "../assets/email-icon.svg";
 
 export default function Footer() {
     return (
@@ -11,23 +16,23 @@ export default function Footer() {
                 <div className={styles.topSection}>
 
                     {/* Left Column: Brand & Info */}
-                    <div className={styles.brandColumn}>
-                        <Link href="/" className="mb-5 inline-block">
+                    <div className={`${styles.brandColumn} gap-8`}>
+                        <Link href="/" className="inline-block">
                             <span className="font-display text-4xl font-black tracking-wide text-white transition-colors hover:text-primary">
                                 sebats,
                             </span>
                         </Link>
 
-                        <p className="mb-8 max-w-sm font-body text-sm leading-relaxed text-white/50">
+                        <p className="max-w-sm font-body text-base leading-relaxed text-white/50">
                             Hassle-free creative agency. Merayakan momen jeda di tengah hiruk-pikuk kultur produktivitas tanpa batas.
                         </p>
 
                         <div className={styles.socialRow}>
-                            <a href="#" aria-label="Instagram"><Instagram className="h-4 w-4" /></a>
-                            <a href="#" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
-                            <a href="#" aria-label="Twitter"><Twitter className="h-4 w-4" /></a>
-                            <a href="#" aria-label="YouTube"><Youtube className="h-4 w-4" /></a>
-                            <a href="mailto:hello@sebats.id" aria-label="Email"><Mail className="h-4 w-4" /></a>
+                            <a href="#" className={styles.instagram} aria-label="Instagram"><Image src={instagramIcon} alt="Instagram" className="h-4 w-4" /></a>
+                            <a href="#" className={styles.linkedin} aria-label="LinkedIn"><Image src={linkedinIcon} alt="LinkedIn" className="h-4 w-4" /></a>
+                            <a href="#" className={styles.twitter} aria-label="Twitter"><Image src={twitterIcon} alt="Twitter" className="h-4 w-4" /></a>
+                            <a href="#" className={styles.youtube} aria-label="YouTube"><Image src={youtubeIcon} alt="YouTube" className="h-4 w-4" /></a>
+                            <a href="mailto:hello@sebats.id" className={styles.email} aria-label="Email"><Image src={emailIcon} alt="Email" className="h-4 w-4" /></a>
                         </div>
                     </div>
 
