@@ -134,6 +134,7 @@
             transparent);
     margin: 3rem auto 2.5rem;
     transform-origin: center;
+    transform: scaleX(0);
 }
 
 /* ─── Subtitle ─── */

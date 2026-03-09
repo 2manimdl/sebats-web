@@ -2,7 +2,6 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { ArrowRight, Phone, MapPin, ExternalLink, MessageCircle, Briefcase, Mail, Copy, Check } from "lucide-react";
-import Navbar from "@/components/Navbar";
 import ClientMarquee from "@/components/ClientMarquee";
 import gsap from "gsap";
 
@@ -143,7 +142,7 @@ export default function KontakPage() {
         <div className="grain-overlay bg-black selection:bg-primary selection:text-black text-white overflow-hidden">
 
             {/* Spacer for Global Navbar */}
-            <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
+            <div style={{ height: "clamp(100px, 15vw, 180px)" }} className="w-full" aria-hidden="true"></div>
 
             <section className="container-main" style={{ paddingBottom: "clamp(80px, 12vw, 160px)" }}>
 

@@ -222,7 +222,7 @@ export default function NewsPage() {
             {/* ── HERO ──────────────────────────────────────────── */}
             <section ref={heroSectionRef} className="relative w-full bg-black">
                 {/* Spacer Absolut untuk Navbar */}
-                <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
+                <div style={{ height: "clamp(100px, 15vw, 180px)" }} className="w-full" aria-hidden="true"></div>
 
                 <div className="container-main w-full relative z-10" style={{ paddingBottom: "clamp(60px, 8vw, 100px)" }}>
                     <p ref={editorialLabelRef} className="mb-6 flex items-center gap-3 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">

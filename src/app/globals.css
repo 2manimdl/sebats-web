@@ -25,6 +25,7 @@
 html {
   scroll-behavior: auto;
   /* GSAP handles smooth scroll */
+  overflow-x: hidden;
 }
 
 body {

@@ -144,7 +144,7 @@ export default function TentangPage() {
             ═══════════════════════════════════════════ */}
             <section className="relative w-full bg-black cretivox-grid">
                 {/* Spacer dikurangi agar teks tidak terlalu jatuh */}
-                <div style={{ height: "180px" }} className="w-full" aria-hidden="true"></div>
+                <div style={{ height: "clamp(100px, 15vw, 180px)" }} className="w-full" aria-hidden="true"></div>
 
                 <div className="container-main relative z-10" style={{ paddingBottom: "clamp(60px, 8vw, 100px)" }}>
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
