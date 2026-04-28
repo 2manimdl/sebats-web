@@ -70,7 +70,7 @@ export default function BentoGrid({ limit, showViewAll = false }: BentoGridProps
     const secondary = items.slice(1);
 
     return (
-        <section id="karya" className="border-grid-t bg-black py-20 md:py-28">
+        <section id="karya" className="mt-20 border-grid-t bg-black py-20 md:mt-28 md:py-28 lg:mt-36 lg:py-36">
             <div className="container-main">
                 {/* Section Header */}
                 <div className="mb-16 border-grid-b pb-8">

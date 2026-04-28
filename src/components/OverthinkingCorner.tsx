@@ -25,7 +25,7 @@ const duplicatedItems = Array(15).fill(marqueeItems).flat();
 export default function OverthinkingCorner() {
     // 1. Ambil data pergerakan scroll vertikal dari window
     const { scrollY } = useScroll();
-    
+
     // 2. Berikan efek "Pegas" (Spring) agar saat scroll berhenti, 
     // pergerakan teks melambat dengan mulus (smooth inertia), tidak kaku.
     const smoothScroll = useSpring(scrollY, {
@@ -39,17 +39,17 @@ export default function OverthinkingCorner() {
     const xMove = useTransform(smoothScroll, (v) => `-${v * 0.8}px`);
 
     return (
-        <section id="overthinking" className="relative overflow-hidden border-grid-t border-grid-b bg-black py-8 md:py-10">
+        <section id="overthinking" className="relative overflow-hidden border-grid-t border-grid-b bg-black py-20 md:py-28 lg:py-36">
             <div className="relative overflow-hidden flex w-full">
-                
+
                 {/* Pembungkus Motion yang diikat ke posisi Scroll */}
-                <motion.div 
+                <motion.div
                     style={{ x: xMove }}
                     className="flex w-max items-center"
                 >
                     {duplicatedItems.map((item, i) => (
-                        <span 
-                            key={`a-${i}`} 
+                        <span
+                            key={`a-${i}`}
                             className="flex cursor-default items-center gap-2 whitespace-nowrap font-display text-lg font-black uppercase text-white/90 transition-colors hover:text-primary md:text-xl lg:text-2xl"
                         >
                             {item.text}

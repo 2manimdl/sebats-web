@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Newspaper, Clock, ArrowRight, PenTool, TrendingUp, User, ChevronDown, Filter } from "lucide-react";
+import { Newspaper, Clock, ArrowRight, PenTool, User, ChevronDown, Filter } from "lucide-react";
 import ClientMarquee from "@/components/ClientMarquee";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -229,7 +229,7 @@ export default function NewsPage() {
                         <Newspaper className="h-4 w-4" /> Editorial Journal
                     </p>
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
-                        <h1 ref={heroRef} className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
+                        <h1 ref={heroRef} className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 7vw + 1rem, 8rem)", lineHeight: "0.95", letterSpacing: "-0.03em" }}>
                             News &<br /><span className="text-primary">Stories.</span>
                         </h1>
                         {/* Hero meta stats */}
@@ -291,57 +291,34 @@ export default function NewsPage() {
                 </div>
             </section>
 
-            {/* ── TRENDING NOW ──────────────────────────────────── */}
-            <section className="bg-white/[0.02] border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
-                <div className="container-main">
-                    <div className="flex items-center gap-3 mb-10">
-                        <TrendingUp className="h-4 w-4 text-primary" />
-                        <span className="font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Trending Sekarang</span>
-                        <span className="flex-1 h-px bg-white/10" />
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-white/10 border-t border-white/5">
-                        {trendingArticles.map((t, i) => (
-                            <a key={i} href="#"
-                                className="group flex flex-col gap-4 px-0 sm:px-8 py-8 hover:bg-white/5 transition-colors duration-300 cursor-pointer">
-                                <div className="flex items-center justify-between">
-                                    <span className="font-display text-4xl font-black text-white/[0.06] group-hover:text-primary/30 transition-colors">0{i + 1}</span>
-                                    <CategoryBadge cat={t.category} />
-                                </div>
-                                <p className="font-display text-sm font-black uppercase tracking-tight text-white/60 group-hover:text-white transition-colors leading-relaxed line-clamp-3 mt-2">
-                                    {t.title}
-                                </p>
-                                <span className="font-body text-[9px] uppercase tracking-[0.3em] text-white/30 mt-auto pt-4">{t.timeAgo} lalu</span>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* ── ARTICLE GRID ──────────────────────────────────── */}
             <section className="bg-black border-t border-white/5" style={{ padding: "clamp(60px, 10vw, 120px) 0" }}>
                 <div className="container-main">
                     {/* Header + Category Filter */}
-                    <div className="mb-12 flex flex-col gap-8">
-                        <div className="flex items-center gap-4 border-b border-white/10 pb-6">
+                    <div className="mb-16 flex flex-col gap-10">
+                        <div className="flex items-center gap-4 border-b border-white/10 pb-8">
                             <span className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white">Semua Artikel</span>
                             <span className="flex-1" />
                             <Filter className="h-4 w-4 text-white/30" />
                             <span className="font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary hidden md:block">Filter Topik</span>
                         </div>
                         {/* Category filter tabs */}
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-2">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`font-body text-[9px] font-black uppercase tracking-[0.25em] px-5 py-3 transition-all duration-300 ${activeCategory === cat
-                                        ? "bg-white text-black"
-                                        : "bg-transparent text-white/50 border border-white/10 hover:border-white/30 hover:text-white"
+                                    className={`font-body text-[10px] font-black uppercase tracking-[0.2em] px-6 py-3 border transition-all duration-300 ${activeCategory === cat
+                                        ? "bg-primary text-black border-primary"
+                                        : "bg-transparent text-white/60 border-white/20 hover:border-white/60 hover:text-white"
                                         }`}
                                 >
                                     {cat}
                                     {cat !== "Semua" && (
-                                        <span className="ml-2 opacity-50">({allArticles.filter(a => a.category === cat).length})</span>
+                                        <span className="ml-2 opacity-40 text-[9px]">
+                                            ({allArticles.filter((a) => a.category === cat).length})
+                                        </span>
                                     )}
                                 </button>
                             ))}
@@ -436,13 +413,13 @@ export default function NewsPage() {
                     >
                         <div className="flex flex-col gap-4 lg:border-r lg:border-white/10 lg:pr-20">
                             <div className="flex flex-col">
-                                <span ref={counterRef} className="font-display font-black text-white/10" style={{ fontSize: "clamp(4rem, 8vw, 7rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>{counterVal}</span>
+                                <span ref={counterRef} className="font-display font-black text-white/10" style={{ fontSize: "clamp(3rem, 5vw + 1rem, 6rem)", lineHeight: 1, letterSpacing: "-0.04em" }}>{counterVal}</span>
                                 <span className="font-display text-4xl font-black text-primary uppercase" style={{ letterSpacing: "-0.03em", lineHeight: 1 }}>Kata.</span>
                             </div>
                             <p className="font-body text-xs uppercase tracking-[0.25em] text-white/40 max-w-[200px] leading-relaxed">Minimum kata yang kami tunggu dari tulisanmu.</p>
                         </div>
                         <div className="flex flex-col">
-                            <h2 className="font-display font-black uppercase text-white leading-none mb-7" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", letterSpacing: "-0.03em" }}>
+                            <h2 className="font-display font-black uppercase text-white leading-none mb-7" style={{ fontSize: "clamp(2rem, 3vw + 0.5rem, 3rem)", lineHeight: "0.95", letterSpacing: "-0.03em" }}>
                                 Sambat<br />Disini.
                             </h2>
                             <p className="font-body text-sm text-white/50 leading-relaxed mb-8 max-w-sm">

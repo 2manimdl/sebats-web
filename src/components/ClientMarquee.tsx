@@ -17,7 +17,7 @@ const clients = [
 
 export default function ClientMarquee() {
     return (
-        <>
+        <div className="bg-black py-20 md:py-28 lg:py-36">
             <div className="border-grid-t border-b border-white/5 bg-black py-4">
                 <Marquee speed={40} autoFill gradient={false}>
                     <span style={{
@@ -50,6 +50,6 @@ export default function ClientMarquee() {
                     </Marquee>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

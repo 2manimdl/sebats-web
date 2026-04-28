@@ -150,7 +150,7 @@ export default function TentangPage() {
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <Users className="h-4 w-4" /> The Story So Far
                     </p>
-                    <h1 className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
+                    <h1 className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 7vw + 1rem, 8rem)", lineHeight: "0.95", letterSpacing: "-0.03em" }}>
                         Bukan Cuma<br /><span className="text-primary">Studio.</span>
                     </h1>
                     <div className="mt-8 h-px w-24 bg-primary" />
@@ -183,7 +183,7 @@ export default function TentangPage() {
                             <div key={item.year} className="tl-card grid grid-cols-1 md:grid-cols-12" style={{ opacity: 0 }}>
                                 <div className="flex items-start py-8 md:col-span-4 md:py-12">
                                     <div className="sticky top-32">
-                                        <span className="font-display font-black text-white/[0.06]" style={{ fontSize: "clamp(4rem, 10vw, 10rem)", lineHeight: 0.85 }}>
+                                        <span className="font-display font-black text-white/[0.06]" style={{ fontSize: "clamp(3rem, 6vw + 1rem, 8rem)", lineHeight: 0.95 }}>
                                             {item.year}
                                         </span>
                                         <div className="mt-2">
@@ -221,7 +221,7 @@ export default function TentangPage() {
                 <div className="container-main">
                     <div style={{ marginBottom: "60px" }}>
                         <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Our People</p>
-                        <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.85" }}>
+                        <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.95" }}>
                             Otak di Balik<br />Layar.
                         </h2>
                     </div>
@@ -251,7 +251,7 @@ export default function TentangPage() {
                     <div style={{ marginBottom: "60px" }} className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="mb-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Structure</p>
-                            <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.85" }}>Divisi &amp; Tim.</h2>
+                            <h2 className="font-display text-4xl font-black uppercase text-white md:text-6xl" style={{ lineHeight: "0.95" }}>Divisi &amp; Tim.</h2>
                         </div>
                         <p className="max-w-xs font-body text-xs uppercase tracking-[0.2em] text-white/30">Kolaborasi lintas disiplin untuk hasil maksimal.</p>
                     </div>

@@ -152,7 +152,7 @@ export default function KontakPage() {
                         <Phone className="h-4 w-4" /> Contact Studio
                     </p>
                     <h1 className="contact-headline font-display font-black uppercase tracking-tighter text-white"
-                        style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
+                        style={{ fontSize: "clamp(3rem, 7vw + 1rem, 8rem)", lineHeight: "0.95", letterSpacing: "-0.03em" }}>
                         Let&apos;s <span className="text-primary">Talk.</span>
                     </h1>
                 </div>

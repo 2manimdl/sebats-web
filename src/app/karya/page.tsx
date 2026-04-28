@@ -126,7 +126,7 @@ export default function KaryaPage() {
                     <p className="mb-6 flex items-center gap-2 font-body text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
                         <TrendingUp className="h-4 w-4" /> Arsip Digital
                     </p>
-                    <h1 className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: "0.85", letterSpacing: "-0.03em" }}>
+                    <h1 className="font-display font-black uppercase text-white" style={{ fontSize: "clamp(3rem, 7vw + 1rem, 8rem)", lineHeight: "0.95", letterSpacing: "-0.03em" }}>
                         Karya &<br /><span id="karya-title-accent" className="text-primary">Layanan.</span>
                     </h1>
                     <div className="mt-10 h-px w-24 bg-primary" />
